@@ -1,0 +1,58 @@
+rules_version = '2';
+
+/**
+ * Cloud Storage security rules.
+ *
+ * Uploaded images are public assets — the website renders them for anonymous
+ * visitors, so read is open. Writes are restricted to active administrators,
+ * limited to the known folders, capped at 8 MB, and must be images.
+ */
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function adminDoc() {
+      return firestore.get(/databases/(default)/documents/admins/$(request.auth.uid)).data;
+    }
+
+    function isAdmin() {
+      return isSignedIn()
+        && firestore.exists(/databases/(default)/documents/admins/$(request.auth.uid))
+        && adminDoc().isActive == true;
+    }
+
+    function isImage() {
+      return request.resource.contentType.matches('image/.*');
+    }
+
+    // Keep this in sync with MAX_UPLOAD_BYTES in src/lib/firebase/storage.ts.
+    function withinSizeLimit() {
+      return request.resource.size <= 8 * 1024 * 1024;
+    }
+
+    // Only the folders the admin panel actually writes to.
+    match /{folder}/{fileName} {
+      allow read: if folder in [
+        'banners', 'services', 'portfolio', 'team', 'testimonials', 'company', 'general'
+      ];
+
+      allow write: if isAdmin()
+        && folder in [
+          'banners', 'services', 'portfolio', 'team', 'testimonials', 'company', 'general'
+        ]
+        && (
+          // Deletes carry no resource to validate.
+          request.resource == null
+          || (isImage() && withinSizeLimit())
+        );
+    }
+
+    // Anything outside those folders is denied.
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

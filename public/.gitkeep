@@ -1,0 +1,5 @@
+# Static assets served from the site root.
+#
+# Anything placed here is available at `/<filename>`. The site's logo and
+# favicon are normally uploaded through Admin → Website settings and served
+# from Firebase Storage instead, so this directory is usually empty.

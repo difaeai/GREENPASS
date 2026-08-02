@@ -1,0 +1,220 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* ---- Brand: Royal Blue ---- */
+  --color-brand-50: #eff6ff;
+  --color-brand-100: #dbeafe;
+  --color-brand-200: #bfdbfe;
+  --color-brand-300: #93c5fd;
+  --color-brand-400: #60a5fa;
+  --color-brand-500: #3b82f6;
+  --color-brand-600: #2563eb;
+  --color-brand-700: #1d4ed8;
+  --color-brand-800: #1e40af;
+  --color-brand-900: #1e3a8a;
+  --color-brand-950: #172554;
+
+  /* ---- Navy: Dark Blue surfaces ---- */
+  --color-navy-50: #f4f7fb;
+  --color-navy-100: #e8eef7;
+  --color-navy-200: #cbd9ec;
+  --color-navy-300: #9db8db;
+  --color-navy-400: #6891c6;
+  --color-navy-500: #4571b0;
+  --color-navy-600: #345994;
+  --color-navy-700: #2b4778;
+  --color-navy-800: #223a5f;
+  --color-navy-900: #16253d;
+  --color-navy-950: #0b1220;
+
+  /* ---- Accent: gradient partner ---- */
+  --color-accent-400: #38bdf8;
+  --color-accent-500: #0ea5e9;
+  --color-accent-600: #0284c7;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-outfit), var(--font-inter), ui-sans-serif, sans-serif;
+
+  --radius-4xl: 2rem;
+  --radius-5xl: 2.5rem;
+
+  --shadow-soft: 0 2px 8px -2px rgb(16 34 64 / 0.08), 0 12px 32px -8px rgb(16 34 64 / 0.10);
+  --shadow-lift: 0 8px 24px -6px rgb(16 34 64 / 0.14), 0 24px 56px -16px rgb(16 34 64 / 0.18);
+  --shadow-glow: 0 0 0 1px rgb(37 99 235 / 0.12), 0 18px 48px -12px rgb(37 99 235 / 0.35);
+
+  --animate-shimmer: shimmer 1.6s ease-in-out infinite;
+  --animate-float: float 7s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+
+/* ------------------------------------------------------------------ */
+/* Base                                                                */
+/* ------------------------------------------------------------------ */
+
+@layer base {
+  :root {
+    --surface: #ffffff;
+    --surface-muted: #f4f7fb;
+    --border-subtle: #dfe7f3;
+    --text-strong: #0b1220;
+    --text-muted: #345994;
+  }
+
+  .dark {
+    --surface: #0b1220;
+    --surface-muted: #16253d;
+    --border-subtle: #223a5f;
+    --text-strong: #f4f7fb;
+    --text-muted: #9db8db;
+  }
+
+  * {
+    border-color: var(--border-subtle);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--surface);
+    color: var(--text-strong);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4, h5 {
+    font-family: var(--font-display);
+    letter-spacing: -0.022em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand-500);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background-color: color-mix(in oklab, var(--color-brand-500) 26%, transparent);
+  }
+
+  /* Respect users who ask for less motion. */
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Utilities                                                           */
+/* ------------------------------------------------------------------ */
+
+@utility container-page {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 80rem;
+  padding-inline: 1.25rem;
+
+  @media (width >= 40rem) { padding-inline: 2rem; }
+  @media (width >= 64rem) { padding-inline: 2.5rem; }
+}
+
+@utility text-gradient {
+  background-image: linear-gradient(
+    100deg,
+    var(--color-brand-700) 0%,
+    var(--color-brand-500) 45%,
+    var(--color-accent-500) 100%
+  );
+  background-clip: text;
+  color: transparent;
+}
+
+@utility surface-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-soft);
+}
+
+@utility glass-panel {
+  background-color: color-mix(in oklab, #ffffff 68%, transparent);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  border: 1px solid color-mix(in oklab, #ffffff 55%, transparent);
+}
+
+@utility grid-backdrop {
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--color-navy-300) 26%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--color-navy-300) 26%, transparent) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+}
+
+@utility skeleton {
+  background-image: linear-gradient(
+    90deg,
+    var(--surface-muted) 25%,
+    color-mix(in oklab, var(--surface-muted) 55%, var(--color-navy-200)) 37%,
+    var(--surface-muted) 63%
+  );
+  background-size: 200% 100%;
+  animation: var(--animate-shimmer);
+  border-radius: var(--radius-lg);
+}
+
+/* Thin, theme-aware scrollbar for admin panes. */
+@utility scrollbar-slim {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-navy-300) transparent;
+
+  &::-webkit-scrollbar { width: 8px; height: 8px; }
+  &::-webkit-scrollbar-track { background: transparent; }
+  &::-webkit-scrollbar-thumb {
+    background-color: color-mix(in oklab, var(--color-navy-400) 45%, transparent);
+    border-radius: 999px;
+  }
+}
+
+/* Dark-mode overrides for the composite utilities above. */
+.dark .text-gradient {
+  background-image: linear-gradient(
+    100deg,
+    var(--color-brand-300) 0%,
+    var(--color-brand-400) 45%,
+    var(--color-accent-400) 100%
+  );
+}
+
+.dark .glass-panel {
+  background-color: color-mix(in oklab, #0b1220 62%, transparent);
+  border-color: color-mix(in oklab, #e8eef7 12%, transparent);
+}
+
+.dark .surface-card {
+  box-shadow: 0 2px 8px -2px rgb(0 0 0 / 0.4), 0 12px 32px -8px rgb(0 0 0 / 0.35);
+}

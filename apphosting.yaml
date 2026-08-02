@@ -1,0 +1,62 @@
+# Firebase App Hosting configuration.
+#
+# Use this if you deploy with App Hosting (the managed Next.js runtime) instead
+# of the Hosting web-frameworks integration. Both are supported — see
+# docs/DEPLOYMENT.md for the trade-offs.
+#
+# App Hosting injects Application Default Credentials automatically, so the
+# Admin SDK needs no service-account secret in production.
+
+runConfig:
+  minInstances: 0
+  maxInstances: 10
+  concurrency: 80
+  cpu: 1
+  memoryMiB: 512
+
+env:
+  # ---- Public Firebase config -------------------------------------------
+  # These are public identifiers, not secrets — safe as plain values.
+  - variable: NEXT_PUBLIC_FIREBASE_API_KEY
+    value: ""
+    availability: [BUILD, RUNTIME]
+
+  - variable: NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN
+    value: ""
+    availability: [BUILD, RUNTIME]
+
+  - variable: NEXT_PUBLIC_FIREBASE_PROJECT_ID
+    value: ""
+    availability: [BUILD, RUNTIME]
+
+  - variable: NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET
+    value: ""
+    availability: [BUILD, RUNTIME]
+
+  - variable: NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID
+    value: ""
+    availability: [BUILD, RUNTIME]
+
+  - variable: NEXT_PUBLIC_FIREBASE_APP_ID
+    value: ""
+    availability: [BUILD, RUNTIME]
+
+  # ---- Site ---------------------------------------------------------------
+  - variable: NEXT_PUBLIC_SITE_URL
+    value: "https://your-project.web.app"
+    availability: [BUILD, RUNTIME]
+
+  - variable: NEXT_PUBLIC_ALLOW_INDEXING
+    value: "true"
+    availability: [BUILD, RUNTIME]
+
+  # ---- reCAPTCHA ----------------------------------------------------------
+  - variable: NEXT_PUBLIC_RECAPTCHA_SITE_KEY
+    value: ""
+    availability: [BUILD, RUNTIME]
+
+  # Secrets live in Secret Manager. Create with:
+  #   firebase apphosting:secrets:set RECAPTCHA_SECRET_KEY
+  - variable: RECAPTCHA_SECRET_KEY
+    secret: RECAPTCHA_SECRET_KEY
+    availability: [RUNTIME]

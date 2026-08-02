@@ -1,0 +1,193 @@
+rules_version = '2';
+
+/**
+ * Firestore security rules.
+ *
+ * Model:
+ *  - Public content is world-readable so the site can be served without auth.
+ *  - Writes require an *active* document in `admins/{uid}` — being signed in
+ *    to Firebase Auth is never sufficient on its own.
+ *  - Contact submissions are create-only from the public, with field
+ *    validation; nobody but an admin can read them back.
+ *  - Anything not matched explicitly is denied by the final catch-all.
+ */
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    /* ------------------------------------------------------------------ */
+    /* Helpers                                                             */
+    /* ------------------------------------------------------------------ */
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function adminDoc() {
+      return get(/databases/$(database)/documents/admins/$(request.auth.uid)).data;
+    }
+
+    function adminExists() {
+      return isSignedIn()
+        && exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+    }
+
+    // An admin whose record has not been deactivated.
+    function isAdmin() {
+      return adminExists() && adminDoc().isActive == true;
+    }
+
+    function isSuperAdmin() {
+      return isAdmin() && adminDoc().role == 'superadmin';
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function isString(field, maxLength) {
+      return incoming()[field] is string && incoming()[field].size() <= maxLength;
+    }
+
+    /* ------------------------------------------------------------------ */
+    /* Admins                                                              */
+    /* ------------------------------------------------------------------ */
+
+    match /admins/{uid} {
+      // An admin may read their own record (the sign-in role check) and any
+      // admin may list the others. Nobody else can read this collection.
+      allow get: if isSignedIn() && (request.auth.uid == uid || isAdmin());
+      allow list: if isAdmin();
+
+      // Only a superadmin can grant, modify or revoke admin access — this is
+      // the privilege-escalation boundary, so it is deliberately the tightest
+      // rule in the file. Bootstrap the first admin with `npm run create-admin`.
+      allow create, delete: if isSuperAdmin();
+
+      // A superadmin can change anything; a regular admin may only stamp their
+      // own `lastLoginAt` and can never touch `role` or `isActive`.
+      allow update: if isSuperAdmin()
+        || (
+          request.auth.uid == uid
+          && isAdmin()
+          && request.resource.data.diff(resource.data).affectedKeys()
+               .hasOnly(['lastLoginAt', 'updatedAt'])
+        );
+    }
+
+    /* ------------------------------------------------------------------ */
+    /* Public content — world-readable, admin-writable                     */
+    /* ------------------------------------------------------------------ */
+
+    match /website_settings/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /home/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /about/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /seo_settings/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /home_banners/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /services/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /portfolio/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /portfolio_categories/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /team/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /testimonials/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    /* ------------------------------------------------------------------ */
+    /* Contact queries — public create only                                */
+    /* ------------------------------------------------------------------ */
+
+    match /contact_queries/{docId} {
+      // Private: only admins ever read a submission back.
+      allow read: if isAdmin();
+
+      // The website's own API route writes with the Admin SDK and bypasses
+      // these rules entirely. This create rule is the fallback path for a
+      // direct client write, so it validates every field it accepts.
+      allow create: if
+        isString('fullName', 100) && incoming().fullName.size() >= 2
+        && isString('email', 160)
+        && incoming().email.matches('^[^@\\s]+@[^@\\s]+\\.[^@\\s]{2,}$')
+        && isString('subject', 150) && incoming().subject.size() >= 3
+        && isString('message', 5000) && incoming().message.size() >= 20
+        && incoming().status == 'new'
+        && (!('companyName' in incoming()) || incoming().companyName == null || isString('companyName', 120))
+        && (!('phone' in incoming()) || incoming().phone == null || isString('phone', 32));
+
+      // Admins triage; nobody edits a submission's original content.
+      allow update: if isAdmin()
+        && request.resource.data.diff(resource.data).affectedKeys()
+             .hasOnly(['status', 'notes', 'updatedAt']);
+
+      allow delete: if isAdmin();
+    }
+
+    /* ------------------------------------------------------------------ */
+    /* Newsletter — public create only                                     */
+    /* ------------------------------------------------------------------ */
+
+    match /newsletter_subscribers/{docId} {
+      allow read: if isAdmin();
+
+      allow create: if
+        isString('email', 160)
+        && incoming().email.matches('^[^@\\s]+@[^@\\s]+\\.[^@\\s]{2,}$')
+        && incoming().isActive == true;
+
+      allow update, delete: if isAdmin();
+    }
+
+    /* ------------------------------------------------------------------ */
+    /* Media library — admin only                                          */
+    /* ------------------------------------------------------------------ */
+
+    match /media_library/{docId} {
+      // Not public: the file URLs themselves are public, but the index of
+      // everything ever uploaded is not.
+      allow read, write: if isAdmin();
+    }
+
+    /* ------------------------------------------------------------------ */
+    /* Default deny                                                        */
+    /* ------------------------------------------------------------------ */
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
