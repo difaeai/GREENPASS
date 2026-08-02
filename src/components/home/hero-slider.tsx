@@ -61,7 +61,11 @@ export function HeroSlider({ banners }: { banners: HomeBanner[] }) {
   if (count === 0) return null;
 
   const slide = banners[index];
-  const overlay = slide.overlayOpacity ?? 0.68;
+  // Rounded so the generated gradient string stays clean (0.42, not
+  // 0.41999999999999993) and matches byte-for-byte between server and client.
+  const round = (value: number) => Math.round(value * 100) / 100;
+  const overlay = round(slide.overlayOpacity ?? 0.68);
+  const overlayMid = round(Math.max(overlay - 0.28, 0.18));
 
   return (
     <section
@@ -72,7 +76,7 @@ export function HeroSlider({ banners }: { banners: HomeBanner[] }) {
       onFocusCapture={() => setPaused(true)}
       onBlurCapture={() => setPaused(false)}
       onKeyDown={onKeyDown}
-      className="relative isolate -mt-17 flex min-h-[92svh] items-center overflow-hidden bg-brand-800 pt-17 text-white"
+      className="relative isolate -mt-17 flex min-h-[92svh] items-center overflow-hidden bg-navy-900 pt-17 text-white"
     >
       {/* Background */}
       <AnimatePresence initial={false} mode="sync">
@@ -91,31 +95,32 @@ export function HeroSlider({ banners }: { banners: HomeBanner[] }) {
             fill
             priority={index === 0}
             sizes="100vw"
-            quality={85}
+            quality={92}
             className="object-cover"
           />
         </motion.div>
       </AnimatePresence>
 
-      {/* Legibility scrim — royal blue rather than near-black, so the hero
-          reads as part of the blue-and-white palette instead of a dark slab.
-          Still dense enough on the left for white text to clear WCAG AA. */}
+      {/* Legibility scrim.
+          Directional and neutral on purpose: a full-width coloured wash tints
+          the whole photograph, which is what made these images read as blue.
+          This is dense only behind the text column on the left and fades to
+          fully transparent by ~72%, so the right-hand side of every photo
+          keeps its true colour. `overlayOpacity` (admin-controlled) scales
+          the left density for busy images without ever tinting the subject. */}
       <div
         aria-hidden
         className="absolute inset-0 -z-1"
         style={{
-          background: `linear-gradient(100deg, rgba(23,55,138,${overlay}) 0%, rgba(29,78,216,${Math.max(
-            overlay - 0.20,
-            0.24,
-          )}) 55%, rgba(14,165,233,0.34) 100%)`,
+          background: `linear-gradient(95deg, rgba(9,16,29,${overlay}) 0%, rgba(9,16,29,${overlayMid}) 34%, rgba(9,16,29,0.14) 56%, rgba(9,16,29,0) 72%)`,
         }}
       />
+      {/* Slight bottom vignette so the controls stay readable. */}
       <div
         aria-hidden
-        className="absolute inset-0 -z-1"
+        className="absolute inset-x-0 bottom-0 -z-1 h-2/5"
         style={{
-          backgroundImage:
-            "radial-gradient(ellipse 55% 45% at 12% 85%, rgba(2,132,199,0.32), transparent 65%)",
+          background: "linear-gradient(to top, rgba(9,16,29,0.5), transparent)",
         }}
       />
 

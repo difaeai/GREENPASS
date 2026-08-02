@@ -43,8 +43,24 @@ required to run the site day to day.
 | 404 | any unmatched route | static |
 
 Plus: sticky navbar with mobile hamburger drawer, professional footer with newsletter
-signup, floating WhatsApp button, scroll-to-top, dark mode, skeleton loading states,
-breadcrumbs, and a lightbox gallery on project pages.
+signup, dark mode (light by default), skeleton loading states, breadcrumbs, a lightbox
+gallery on project pages, and a fixed bottom-right action stack holding scroll-to-top,
+WhatsApp and the **AI website assistant**.
+
+### AI website assistant
+
+A chat widget, fixed bottom-right on every page, that answers visitor questions about the
+company. It is grounded in **your own Firestore content** — sectors, mandates, leadership,
+contact details — so editing a sector description in the admin panel changes what the
+assistant says, with no separate knowledge base to maintain.
+
+- Streams token-by-token from `/api/chat`; the API key stays server-side
+- System prompt forbids invention: unanswerable questions are routed to the contact page
+- Per-visitor rate limiting (20 messages / 10 min)
+- **Works without an API key** — falls back to keyword-matching your site content and
+  labels itself "basic mode" in the panel
+
+Set `ANTHROPIC_API_KEY` in `.env.local` to enable the full assistant.
 
 ### Admin panel
 
@@ -83,6 +99,7 @@ Sign in at `/admin/login`. Sidebar sections:
 | File storage | Firebase Storage |
 | Hosting | Firebase Hosting (web frameworks) or Firebase App Hosting |
 | Spam control | Google reCAPTCHA v3 + honeypot + rate limiting |
+| AI assistant | Claude (`claude-opus-5`) via the Anthropic SDK, streamed |
 
 ---
 
@@ -169,6 +186,7 @@ src/
 │   ├── api/
 │   │   ├── contact/           # Contact form → Firestore (reCAPTCHA verified)
 │   │   ├── newsletter/        # Subscriptions → Firestore
+│   │   ├── chat/              # AI assistant (streaming, grounded in site content)
 │   │   └── admin/users/       # Create/remove admins (superadmin token required)
 │   ├── sitemap.ts             # Dynamic XML sitemap
 │   ├── robots.ts              # Environment-aware robots.txt

@@ -1,7 +1,6 @@
+import { FloatingActions } from "@/components/public/floating-actions";
 import { Footer } from "@/components/public/footer";
 import { Navbar } from "@/components/public/navbar";
-import { ScrollToTop } from "@/components/public/scroll-to-top";
-import { WhatsAppButton } from "@/components/public/whatsapp-button";
 import { JsonLd } from "@/components/ui/primitives";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 import { getServices } from "@/lib/services/collections";
@@ -32,8 +31,9 @@ export default async function PublicLayout({ children }: { children: React.React
 
       <Footer settings={settings} services={services} />
 
-      <ScrollToTop />
-      <WhatsAppButton number={settings.whatsapp} company={settings.companyName} />
+      {/* Scroll-to-top, WhatsApp and the assistant, in one fixed stack so they
+          never collide and all three follow the visitor down every page. */}
+      <FloatingActions whatsapp={settings.whatsapp} companyName={settings.companyName} />
     </>
   );
 }
