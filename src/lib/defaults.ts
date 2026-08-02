@@ -318,11 +318,14 @@ export const DEFAULT_WEBSITE_SETTINGS: WebsiteSettings = {
   favicon: "",
   email: "contact@msgreenpass.com",
   secondaryEmail: "",
-  // No public phone number was supplied. Leaving these blank hides the phone
-  // and WhatsApp affordances everywhere rather than showing empty fields.
+  // `phone` drives the `tel:` links and the "Call us" card. It is left blank
+  // because only a WhatsApp number was supplied — fill it in from
+  // Admin → Website settings if the line also takes calls.
   phone: "",
   secondaryPhone: "",
-  whatsapp: "",
+  // International format. `whatsappLink()` strips the spaces and the plus,
+  // giving wa.me/923004109593.
+  whatsapp: "+92 300 4109593",
   address: "MS GreenPass Pvt Ltd\nIslamabad\nPakistan",
   // Generic Islamabad embed — replace with the exact office location.
   googleMapsEmbedUrl:
