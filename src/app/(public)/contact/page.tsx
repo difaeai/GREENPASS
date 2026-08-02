@@ -188,7 +188,7 @@ export default async function ContactPage() {
               </div>
             )}
 
-            <div className="surface-card overflow-hidden bg-navy-950 p-6 text-white">
+            <div className="band-blue overflow-hidden rounded-2xl p-6 shadow-[0_16px_40px_-16px_rgb(37_99_235_/_0.5)]">
               <h2 className="text-base font-semibold">What happens next</h2>
               <ol className="mt-4 space-y-4">
                 {[
@@ -199,11 +199,11 @@ export default async function ContactPage() {
                   <li key={step} className="flex gap-3.5">
                     <span
                       aria-hidden
-                      className="flex size-6 shrink-0 items-center justify-center rounded-full bg-brand-500/20 text-[11px] font-bold text-brand-300"
+                      className="flex size-6 shrink-0 items-center justify-center rounded-full bg-white/20 text-[11px] font-bold text-white"
                     >
                       {index + 1}
                     </span>
-                    <span className="text-sm leading-relaxed text-white/65">{step}</span>
+                    <span className="text-sm leading-relaxed text-white/80">{step}</span>
                   </li>
                 ))}
               </ol>

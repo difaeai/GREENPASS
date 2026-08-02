@@ -161,7 +161,7 @@ export default function SeoSettingsPage() {
                 className={cn(
                   "shrink-0 rounded-full border px-4 py-2 text-[13px] font-medium transition-colors",
                   activePage === page.key
-                    ? "border-transparent bg-navy-950 text-white dark:bg-white dark:text-navy-950"
+                    ? "border-transparent bg-brand-600 text-white"
                     : "border-navy-200 text-navy-600 hover:border-brand-400 hover:text-brand-600 dark:border-navy-700 dark:text-navy-300",
                 )}
               >

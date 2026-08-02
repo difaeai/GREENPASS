@@ -80,7 +80,7 @@ export function PortfolioGrid({
       <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
         <div
           role="tablist"
-          aria-label="Filter projects by category"
+          aria-label="Filter mandates by sector"
           className="scrollbar-slim -mx-1 flex gap-2 overflow-x-auto px-1 pb-1"
         >
           <FilterChip
@@ -88,7 +88,7 @@ export function PortfolioGrid({
             onClick={() => selectCategory("all")}
             count={projects.length}
           >
-            All work
+            All sectors
           </FilterChip>
 
           {usedCategories.map((category) => (
@@ -105,7 +105,7 @@ export function PortfolioGrid({
 
         <div className="relative w-full lg:w-72">
           <label htmlFor="portfolio-search" className="sr-only">
-            Search projects
+            Search mandates
           </label>
           <Search
             aria-hidden
@@ -116,7 +116,7 @@ export function PortfolioGrid({
             type="search"
             value={query}
             onChange={(event) => updateQuery(event.target.value)}
-            placeholder="Search by name, client or tech…"
+            placeholder="Search mandates…"
             className="w-full rounded-full border border-navy-200 bg-white py-2.5 pr-9 pl-10 text-sm text-navy-900 placeholder:text-navy-400 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/12 focus:outline-none dark:border-navy-700 dark:bg-navy-950 dark:text-navy-50"
           />
           {query && (
@@ -135,7 +135,7 @@ export function PortfolioGrid({
       {/* Result count, announced to screen readers */}
       <p className="mt-6 text-sm text-navy-500 dark:text-navy-400" role="status" aria-live="polite">
         Showing {shown.length} of {filtered.length}{" "}
-        {filtered.length === 1 ? "project" : "projects"}
+        {filtered.length === 1 ? "mandate" : "mandates"}
       </p>
 
       {/* Grid */}
@@ -143,8 +143,8 @@ export function PortfolioGrid({
         <EmptyState
           className="mt-8"
           icon={<FolderSearch className="size-5" />}
-          title="No projects match those filters"
-          description="Try a different category, or clear the search to see everything."
+          title="No mandates match those filters"
+          description="Try a different sector, or clear the search to see everything."
           action={
             <Button
               variant="outline"
@@ -189,7 +189,7 @@ export function PortfolioGrid({
                 size="lg"
                 onClick={() => setVisible((count) => count + PAGE_SIZE)}
               >
-                Load more projects
+                Load more mandates
                 <span className="ml-1 text-navy-400">
                   ({filtered.length - visible} left)
                 </span>
@@ -222,7 +222,7 @@ function FilterChip({
       className={cn(
         "flex shrink-0 items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium transition-all duration-200",
         active
-          ? "border-transparent bg-navy-950 text-white shadow-soft dark:bg-white dark:text-navy-950"
+          ? "border-transparent bg-brand-600 text-white shadow-[0_8px_20px_-8px_rgb(37_99_235_/_0.6)]"
           : "border-navy-200 bg-white text-navy-600 hover:border-brand-300 hover:text-brand-700 dark:border-navy-700 dark:bg-navy-950 dark:text-navy-300 dark:hover:border-brand-500/50 dark:hover:text-brand-300",
       )}
     >
@@ -231,7 +231,7 @@ function FilterChip({
         className={cn(
           "rounded-full px-1.5 py-0.5 text-[11px] tabular-nums",
           active
-            ? "bg-white/15 text-white dark:bg-navy-950/10 dark:text-navy-950"
+            ? "bg-white/20 text-white"
             : "bg-navy-100 text-navy-500 dark:bg-navy-800 dark:text-navy-400",
         )}
       >

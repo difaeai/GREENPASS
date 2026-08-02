@@ -62,27 +62,27 @@ function LoginForm() {
   const displayError = formError ?? authError;
 
   return (
-    <div className="relative isolate flex min-h-svh items-center justify-center overflow-hidden bg-navy-950 px-5 py-16">
+    <div className="wash-blue relative isolate flex min-h-svh items-center justify-center overflow-hidden px-5 py-16">
       <div
         aria-hidden
         className="absolute inset-0 -z-1"
         style={{
           backgroundImage:
-            "radial-gradient(ellipse 55% 50% at 20% 10%, rgba(37,99,235,0.28), transparent 60%), radial-gradient(ellipse 45% 45% at 85% 88%, rgba(14,165,233,0.18), transparent 60%)",
+            "radial-gradient(ellipse 55% 50% at 20% 10%, rgba(37,99,235,0.12), transparent 60%), radial-gradient(ellipse 45% 45% at 85% 88%, rgba(14,165,233,0.09), transparent 60%)",
         }}
       />
-      <div aria-hidden className="grid-backdrop absolute inset-0 -z-1 opacity-20" />
+      <div aria-hidden className="grid-backdrop absolute inset-0 -z-1 opacity-35" />
 
       <div className="w-full max-w-md">
         <Link
           href="/"
-          className="mb-8 inline-flex items-center gap-2 text-sm text-white/55 transition-colors hover:text-white"
+          className="mb-8 inline-flex items-center gap-2 text-sm text-navy-500 transition-colors hover:text-brand-700 dark:text-navy-400"
         >
           <ArrowLeft aria-hidden className="size-4" />
           Back to the website
         </Link>
 
-        <div className="rounded-3xl border border-white/10 bg-white/5 p-7 backdrop-blur-xl sm:p-9">
+        <div className="rounded-3xl border border-brand-100 bg-white p-7 shadow-lift sm:p-9 dark:border-navy-800 dark:bg-navy-900">
           <span
             aria-hidden
             className="flex size-12 items-center justify-center rounded-2xl bg-linear-135 from-brand-600 to-accent-500 text-white shadow-[0_10px_28px_-10px_rgba(37,99,235,0.8)]"
@@ -90,15 +90,15 @@ function LoginForm() {
             <ShieldCheck className="size-6" />
           </span>
 
-          <h1 className="mt-6 text-2xl font-semibold text-white">Admin sign in</h1>
-          <p className="mt-2 text-sm leading-relaxed text-white/50">
+          <h1 className="mt-6 text-2xl font-semibold text-navy-950 dark:text-white">Admin sign in</h1>
+          <p className="mt-2 text-sm leading-relaxed text-navy-500 dark:text-navy-400">
             Access is limited to registered administrators. There is no public registration.
           </p>
 
           {!configured && (
             <p
               role="alert"
-              className="mt-6 flex gap-2.5 rounded-xl border border-amber-400/25 bg-amber-400/10 p-3.5 text-[13px] leading-relaxed text-amber-200"
+              className="mt-6 flex gap-2.5 rounded-xl border border-amber-300 bg-amber-50 p-3.5 text-[13px] leading-relaxed text-amber-800 dark:border-amber-500/30 dark:bg-amber-500/10 dark:text-amber-200"
             >
               <AlertTriangle aria-hidden className="mt-0.5 size-4 shrink-0" />
               Firebase isn&apos;t configured. Copy <code>.env.example</code> to{" "}
@@ -110,7 +110,7 @@ function LoginForm() {
             <div className="relative">
               <Mail
                 aria-hidden
-                className="pointer-events-none absolute top-[2.35rem] left-3.5 z-1 size-4 text-white/35"
+                className="pointer-events-none absolute top-[2.35rem] left-3.5 z-1 size-4 text-navy-400"
               />
               <Input
                 label="Email address"
@@ -121,15 +121,14 @@ function LoginForm() {
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
                 disabled={!configured || submitting}
-                className="border-white/12 bg-white/5 pl-10 text-white placeholder:text-white/30 focus:border-brand-400 dark:bg-white/5 dark:text-white"
-                containerClassName="[&_label]:text-white/70"
+                className="pl-10"
               />
             </div>
 
             <div className="relative">
               <Lock
                 aria-hidden
-                className="pointer-events-none absolute top-[2.35rem] left-3.5 z-1 size-4 text-white/35"
+                className="pointer-events-none absolute top-[2.35rem] left-3.5 z-1 size-4 text-navy-400"
               />
               <Input
                 label="Password"
@@ -140,14 +139,13 @@ function LoginForm() {
                 value={password}
                 onChange={(event) => setPassword(event.target.value)}
                 disabled={!configured || submitting}
-                className="border-white/12 bg-white/5 px-10 text-white placeholder:text-white/30 focus:border-brand-400 dark:bg-white/5 dark:text-white"
-                containerClassName="[&_label]:text-white/70"
+                className="px-10"
               />
               <button
                 type="button"
                 onClick={() => setShowPassword((visible) => !visible)}
                 aria-label={showPassword ? "Hide password" : "Show password"}
-                className="absolute top-[2.15rem] right-3 z-1 p-1 text-white/40 transition-colors hover:text-white/80"
+                className="absolute top-[2.15rem] right-3 z-1 p-1 text-navy-400 transition-colors hover:text-navy-700 dark:hover:text-navy-200"
               >
                 {showPassword ? (
                   <EyeOff aria-hidden className="size-4" />
@@ -160,7 +158,7 @@ function LoginForm() {
             {displayError && (
               <p
                 role="alert"
-                className="flex gap-2.5 rounded-xl border border-red-400/25 bg-red-400/10 p-3.5 text-[13px] leading-relaxed text-red-200"
+                className="flex gap-2.5 rounded-xl border border-red-300 bg-red-50 p-3.5 text-[13px] leading-relaxed text-red-700 dark:border-red-500/30 dark:bg-red-500/10 dark:text-red-300"
               >
                 <AlertTriangle aria-hidden className="mt-0.5 size-4 shrink-0" />
                 {displayError}
@@ -181,14 +179,14 @@ function LoginForm() {
               type="button"
               onClick={handleReset}
               disabled={!configured}
-              className="w-full text-center text-[13px] text-white/45 transition-colors hover:text-white/80 disabled:opacity-50"
+              className="w-full text-center text-[13px] text-navy-500 transition-colors hover:text-brand-700 disabled:opacity-50 dark:text-navy-400"
             >
               Forgot your password?
             </button>
           </form>
         </div>
 
-        <p className="mt-6 text-center text-xs leading-relaxed text-white/30">
+        <p className="mt-6 text-center text-xs leading-relaxed text-navy-400">
           This area is monitored. Unauthorised access attempts are logged.
         </p>
       </div>
@@ -198,7 +196,7 @@ function LoginForm() {
 
 export default function AdminLoginPage() {
   return (
-    <Suspense fallback={<div className="min-h-svh bg-navy-950" />}>
+    <Suspense fallback={<div className="wash-blue min-h-svh" />}>
       <LoginForm />
     </Suspense>
   );

@@ -66,14 +66,14 @@ export default async function ProjectDetailPage({ params }: PageProps) {
   ];
 
   const facts = [
-    { icon: Building2, label: "Client", value: project.clientName },
+    { icon: Building2, label: "Open to", value: project.clientName },
     { icon: Tag, label: "Category", value: project.categoryName },
     {
       icon: Calendar,
-      label: "Completed",
+      label: "Status",
       value: project.completionDate
         ? formatDate(project.completionDate, { month: "long", year: "numeric" })
-        : "Ongoing",
+        : "Active mandate",
     },
   ];
 
@@ -91,7 +91,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
         backgroundImage={project.featuredImage}
       >
         {project.projectUrl && (
-          <ButtonLink href={project.projectUrl} size="lg" variant="glass">
+          <ButtonLink href={project.projectUrl} size="lg" variant="outline">
             Visit the live site
             <ExternalLink aria-hidden className="size-4" />
           </ButtonLink>
@@ -162,7 +162,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                 {project.technologies.length > 0 && (
                   <div className="surface-card p-6">
                     <h2 className="text-[11px] font-semibold tracking-[0.16em] text-navy-400 uppercase">
-                      Technologies
+                      Scope
                     </h2>
                     <ul className="mt-4 flex flex-wrap gap-2">
                       {project.technologies.map((tech) => (
@@ -176,13 +176,13 @@ export default async function ProjectDetailPage({ params }: PageProps) {
 
                 <div className="surface-card mt-6 p-6">
                   <h2 className="text-lg font-semibold text-navy-950 dark:text-white">
-                    Have a similar project?
+                    Interested in this mandate?
                   </h2>
                   <p className="mt-2 text-sm leading-relaxed text-navy-600 dark:text-navy-300">
-                    We&apos;d be glad to talk it through — no obligation, no sales sequence.
+                    Introductions happen after a short qualification conversation.
                   </p>
                   <ButtonLink href="/contact" className="mt-5 w-full">
-                    Start a conversation
+                    Request a briefing
                     <ArrowRight aria-hidden className="size-4" />
                   </ButtonLink>
                 </div>
@@ -196,8 +196,8 @@ export default async function ProjectDetailPage({ params }: PageProps) {
         <Section muted>
           <div className="container-page">
             <SectionHeading
-              eyebrow="More work"
-              heading="Related projects"
+              eyebrow="More mandates"
+              heading="Related opportunities"
               align="left"
             />
             <Stagger as="ul" className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

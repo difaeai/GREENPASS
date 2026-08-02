@@ -131,8 +131,8 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
     href === "/admin" ? pathname === "/admin" : pathname.startsWith(href);
 
   const sidebar = (
-    <div className="flex h-full flex-col bg-navy-950 text-white">
-      <div className="flex h-16 shrink-0 items-center justify-between gap-2 border-b border-white/8 px-5">
+    <div className="flex h-full flex-col border-r border-brand-100 bg-white dark:border-navy-800 dark:bg-navy-900">
+      <div className="flex h-16 shrink-0 items-center justify-between gap-2 border-b border-brand-100 px-5 dark:border-navy-800">
         <Link href="/admin" className="flex items-center gap-2.5">
           <span
             aria-hidden
@@ -140,14 +140,14 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
           >
             <Sparkles className="size-4" />
           </span>
-          <span className="font-display text-[15px] font-semibold">Control Panel</span>
+          <span className="font-display text-[15px] font-semibold text-navy-950 dark:text-white">Control Panel</span>
         </Link>
 
         <button
           type="button"
           onClick={() => setSidebarOpen(false)}
           aria-label="Close the menu"
-          className="flex size-8 items-center justify-center rounded-lg text-white/50 transition-colors hover:bg-white/8 hover:text-white lg:hidden"
+          className="flex size-8 items-center justify-center rounded-lg text-navy-400 transition-colors hover:bg-brand-50 hover:text-navy-900 lg:hidden dark:hover:bg-navy-800"
         >
           <X aria-hidden className="size-4.5" />
         </button>
@@ -159,7 +159,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
       >
         {NAV_GROUPS.map((group) => (
           <div key={group.title}>
-            <p className="px-3 text-[10px] font-semibold tracking-[0.16em] text-white/28 uppercase">
+            <p className="px-3 text-[10px] font-semibold tracking-[0.16em] text-navy-400 uppercase">
               {group.title}
             </p>
             <ul className="mt-2 space-y-0.5">
@@ -174,21 +174,21 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
                       className={cn(
                         "relative flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13.5px] font-medium transition-colors duration-150",
                         active
-                          ? "bg-brand-600/16 text-white"
-                          : "text-white/55 hover:bg-white/6 hover:text-white",
+                          ? "bg-brand-50 text-brand-700 dark:bg-brand-500/12 dark:text-brand-300"
+                          : "text-navy-600 hover:bg-brand-50/70 hover:text-navy-950 dark:text-navy-300 dark:hover:bg-navy-800 dark:hover:text-white",
                       )}
                     >
                       {active && (
                         <motion.span
                           layoutId="admin-nav-active"
                           aria-hidden
-                          className="absolute inset-y-1.5 left-0 w-0.5 rounded-full bg-brand-400"
+                          className="absolute inset-y-1.5 left-0 w-0.5 rounded-full bg-brand-600 dark:bg-brand-400"
                           transition={{ type: "spring", stiffness: 400, damping: 34 }}
                         />
                       )}
                       <ItemIcon
                         aria-hidden
-                        className={cn("size-4 shrink-0", active && "text-brand-300")}
+                        className={cn("size-4 shrink-0", active && "text-brand-600 dark:text-brand-300")}
                       />
                       {item.label}
                     </Link>
@@ -200,12 +200,12 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
         ))}
       </nav>
 
-      <div className="shrink-0 border-t border-white/8 p-3">
+      <div className="shrink-0 border-t border-brand-100 p-3 dark:border-navy-800">
         <a
           href="/"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13.5px] font-medium text-white/55 transition-colors hover:bg-white/6 hover:text-white"
+          className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13.5px] font-medium text-navy-600 transition-colors hover:bg-brand-50/70 hover:text-navy-950 dark:text-navy-300 dark:hover:bg-navy-800"
         >
           <ExternalLink aria-hidden className="size-4 shrink-0" />
           View live site
@@ -215,7 +215,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
   );
 
   return (
-    <div className="flex min-h-svh bg-navy-50 dark:bg-navy-950">
+    <div className="flex min-h-svh bg-[var(--surface-muted)]">
       {/* Desktop sidebar */}
       <aside className="hidden w-64 shrink-0 lg:block">
         <div className="fixed inset-y-0 left-0 w-64">{sidebar}</div>

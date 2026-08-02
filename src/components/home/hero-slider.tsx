@@ -72,7 +72,7 @@ export function HeroSlider({ banners }: { banners: HomeBanner[] }) {
       onFocusCapture={() => setPaused(true)}
       onBlurCapture={() => setPaused(false)}
       onKeyDown={onKeyDown}
-      className="relative isolate -mt-17 flex min-h-[92svh] items-center overflow-hidden bg-navy-950 pt-17 text-white"
+      className="relative isolate -mt-17 flex min-h-[92svh] items-center overflow-hidden bg-brand-800 pt-17 text-white"
     >
       {/* Background */}
       <AnimatePresence initial={false} mode="sync">
@@ -97,15 +97,17 @@ export function HeroSlider({ banners }: { banners: HomeBanner[] }) {
         </motion.div>
       </AnimatePresence>
 
-      {/* Legibility scrim */}
+      {/* Legibility scrim — royal blue rather than near-black, so the hero
+          reads as part of the blue-and-white palette instead of a dark slab.
+          Still dense enough on the left for white text to clear WCAG AA. */}
       <div
         aria-hidden
         className="absolute inset-0 -z-1"
         style={{
-          background: `linear-gradient(100deg, rgba(11,18,32,${overlay}) 0%, rgba(11,18,32,${Math.max(
-            overlay - 0.22,
-            0.2,
-          )}) 55%, rgba(11,18,32,0.35) 100%)`,
+          background: `linear-gradient(100deg, rgba(23,55,138,${overlay}) 0%, rgba(29,78,216,${Math.max(
+            overlay - 0.20,
+            0.24,
+          )}) 55%, rgba(14,165,233,0.34) 100%)`,
         }}
       />
       <div
@@ -113,7 +115,7 @@ export function HeroSlider({ banners }: { banners: HomeBanner[] }) {
         className="absolute inset-0 -z-1"
         style={{
           backgroundImage:
-            "radial-gradient(ellipse 55% 45% at 12% 85%, rgba(37,99,235,0.30), transparent 65%)",
+            "radial-gradient(ellipse 55% 45% at 12% 85%, rgba(2,132,199,0.32), transparent 65%)",
         }}
       />
 

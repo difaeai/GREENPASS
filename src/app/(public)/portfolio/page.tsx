@@ -67,8 +67,8 @@ export default async function PortfolioPage() {
           {projects.length === 0 ? (
             <EmptyState
               icon={<FolderOpen className="size-5" />}
-              title="No projects published yet"
-              description="Projects added from the admin panel will appear here."
+              title="No mandates published yet"
+              description="Mandates added from the admin panel will appear here."
             />
           ) : (
             <PortfolioGrid projects={projects} categories={categories} />

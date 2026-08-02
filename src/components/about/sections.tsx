@@ -213,13 +213,13 @@ export function CeoMessageSection({ ceo }: { ceo: AboutContent["ceo"] }) {
     <Section spacing="lg">
       <div className="container-page">
         <Reveal>
-          <div className="relative isolate overflow-hidden rounded-4xl bg-navy-950 text-white">
+          <div className="band-blue relative isolate overflow-hidden rounded-4xl shadow-[0_24px_60px_-24px_rgb(37_99_235_/_0.55)]">
             <div
               aria-hidden
               className="absolute inset-0 -z-1"
               style={{
                 backgroundImage:
-                  "radial-gradient(ellipse 55% 65% at 12% 10%, rgba(37,99,235,0.32), transparent 62%), radial-gradient(ellipse 45% 50% at 92% 88%, rgba(14,165,233,0.20), transparent 60%)",
+                  "radial-gradient(ellipse 55% 65% at 12% 10%, rgba(255,255,255,0.16), transparent 62%), radial-gradient(ellipse 45% 50% at 92% 88%, rgba(255,255,255,0.10), transparent 60%)",
               }}
             />
 
@@ -235,14 +235,14 @@ export function CeoMessageSection({ ceo }: { ceo: AboutContent["ceo"] }) {
                 />
                 <div
                   aria-hidden
-                  className="absolute inset-0 bg-linear-to-t from-navy-950 via-navy-950/25 to-transparent lg:bg-linear-to-r lg:from-transparent lg:via-navy-950/20 lg:to-navy-950"
+                  className="absolute inset-0 bg-linear-to-t from-brand-700 via-brand-700/25 to-transparent lg:bg-linear-to-r lg:from-transparent lg:via-brand-700/20 lg:to-brand-700"
                 />
               </div>
 
               <div className="relative p-8 sm:p-12 lg:py-16 lg:pr-14 lg:pl-4">
-                <Quote aria-hidden className="size-10 text-brand-400/45" />
+                <Quote aria-hidden className="size-10 text-white/40" />
 
-                <div className="mt-6 space-y-4 text-[15px] leading-[1.8] text-white/72 sm:text-base">
+                <div className="mt-6 space-y-4 text-[15px] leading-[1.8] text-white/80 sm:text-base">
                   {ceo.message
                     .split(/\n\s*\n/)
                     .map((paragraph) => paragraph.trim())
@@ -255,7 +255,7 @@ export function CeoMessageSection({ ceo }: { ceo: AboutContent["ceo"] }) {
                 <div className="mt-9 flex flex-wrap items-end justify-between gap-6 border-t border-white/12 pt-7">
                   <div>
                     <p className="font-display text-lg font-semibold text-white">{ceo.name}</p>
-                    <p className="mt-1 text-sm text-brand-300">{ceo.designation}</p>
+                    <p className="mt-1 text-sm text-white/70">{ceo.designation}</p>
                   </div>
 
                   {ceo.signatureImage && (

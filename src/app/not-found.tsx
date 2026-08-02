@@ -12,22 +12,22 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <div className="relative isolate flex min-h-svh flex-col items-center justify-center overflow-hidden bg-navy-950 px-5 py-24 text-center text-white">
+    <div className="wash-blue relative isolate flex min-h-svh flex-col items-center justify-center overflow-hidden px-5 py-24 text-center">
       <div
         aria-hidden
         className="absolute inset-0 -z-1"
         style={{
           backgroundImage:
-            "radial-gradient(ellipse 60% 55% at 50% 0%, rgba(37,99,235,0.28), transparent 62%), radial-gradient(ellipse 45% 45% at 82% 90%, rgba(14,165,233,0.18), transparent 60%)",
+            "radial-gradient(ellipse 60% 55% at 50% 0%, rgba(37,99,235,0.14), transparent 62%), radial-gradient(ellipse 45% 45% at 82% 90%, rgba(14,165,233,0.10), transparent 60%)",
         }}
       />
-      <div aria-hidden className="grid-backdrop absolute inset-0 -z-1 opacity-20" />
+      <div aria-hidden className="grid-backdrop absolute inset-0 -z-1 opacity-35" />
 
       <p
         aria-hidden
         className="font-display text-[7rem] leading-none font-bold tracking-tighter text-transparent sm:text-[11rem]"
         style={{
-          backgroundImage: "linear-gradient(160deg, #60a5fa 0%, #2563eb 45%, #0ea5e9 100%)",
+          backgroundImage: "linear-gradient(160deg, #2563eb 0%, #1d4ed8 45%, #0284c7 100%)",
           backgroundClip: "text",
           WebkitBackgroundClip: "text",
         }}
@@ -35,8 +35,8 @@ export default function NotFound() {
         404
       </p>
 
-      <h1 className="mt-2 text-3xl font-semibold sm:text-4xl">This page doesn&apos;t exist</h1>
-      <p className="mt-4 max-w-md text-[15px] leading-relaxed text-white/60">
+      <h1 className="mt-2 text-3xl font-semibold text-navy-950 sm:text-4xl dark:text-white">This page doesn&apos;t exist</h1>
+      <p className="mt-4 max-w-md text-[15px] leading-relaxed text-navy-600 dark:text-navy-300">
         The link may be out of date, or the page may have been moved. Here&apos;s the way back.
       </p>
 
@@ -45,14 +45,14 @@ export default function NotFound() {
           <Home aria-hidden className="size-4" />
           Back to home
         </ButtonLink>
-        <ButtonLink href="/portfolio" variant="glass" size="lg">
+        <ButtonLink href="/portfolio" variant="outline" size="lg">
           <Search aria-hidden className="size-4" />
           Browse our work
         </ButtonLink>
       </div>
 
       <nav aria-label="Site sections" className="mt-14 w-full max-w-lg">
-        <p className="text-[11px] font-semibold tracking-[0.16em] text-white/35 uppercase">
+        <p className="text-[11px] font-semibold tracking-[0.16em] text-navy-400 uppercase">
           Or jump to
         </p>
         <ul className="mt-4 flex flex-wrap justify-center gap-2">
@@ -60,7 +60,7 @@ export default function NotFound() {
             <li key={item.href}>
               <Link
                 href={item.href}
-                className="flex items-center gap-1.5 rounded-full border border-white/15 px-4 py-2 text-sm text-white/70 transition-colors hover:border-white/35 hover:bg-white/8 hover:text-white"
+                className="flex items-center gap-1.5 rounded-full border border-brand-200 bg-white px-4 py-2 text-sm text-navy-600 shadow-xs transition-colors hover:border-brand-500 hover:bg-brand-50 hover:text-brand-700 dark:border-navy-700 dark:bg-navy-900 dark:text-navy-300"
               >
                 <ArrowLeft aria-hidden className="size-3.5 opacity-50" />
                 {item.label}

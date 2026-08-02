@@ -16,8 +16,12 @@ interface PageHeroProps {
 }
 
 /**
- * Shared masthead for every interior page — keeps About, Services, Portfolio
- * and Contact visually consistent and puts breadcrumbs in one place.
+ * Shared masthead for every interior page.
+ *
+ * Light by design: a white-to-blue wash with royal-blue accents rather than a
+ * dark slab, so interior pages read as an extension of the white page body.
+ * Any supplied image sits behind at low opacity as texture, not as a backdrop
+ * the text has to fight.
  */
 export function PageHero({
   eyebrow,
@@ -31,7 +35,8 @@ export function PageHero({
   return (
     <section
       className={cn(
-        "relative isolate overflow-hidden bg-navy-950 pt-14 pb-16 text-white sm:pt-20 sm:pb-24",
+        "wash-blue relative isolate overflow-hidden border-b border-brand-100/70 pt-12 pb-14",
+        "sm:pt-16 sm:pb-20 dark:border-navy-800",
         className,
       )}
     >
@@ -43,36 +48,36 @@ export function PageHero({
             fill
             priority
             sizes="100vw"
-            className="object-cover opacity-25"
+            className="object-cover opacity-8 dark:opacity-15"
           />
         </div>
       )}
 
+      {/* Faint grid, masked to the top edge. */}
+      <div aria-hidden className="grid-backdrop absolute inset-0 -z-1 opacity-30" />
+
+      {/* Soft blue orb, purely decorative. */}
       <div
         aria-hidden
-        className="absolute inset-0 -z-1"
-        style={{
-          backgroundImage:
-            "radial-gradient(ellipse 70% 60% at 20% 0%, rgba(37,99,235,0.30), transparent 62%), radial-gradient(ellipse 55% 45% at 88% 12%, rgba(14,165,233,0.20), transparent 60%)",
-        }}
+        className="pointer-events-none absolute -top-24 -right-20 -z-1 size-80 rounded-full bg-brand-400/12 blur-3xl"
       />
-      <div aria-hidden className="grid-backdrop absolute inset-0 -z-1 opacity-25" />
 
       <div className="container-page">
-        <Breadcrumbs items={crumbs} className="text-white/65" />
+        <Breadcrumbs items={crumbs} className="text-navy-500 dark:text-navy-400" />
 
         <div className="mt-7 max-w-3xl">
-          {eyebrow && (
-            <Eyebrow className="border-white/20 bg-white/10 text-white/85">{eyebrow}</Eyebrow>
-          )}
-          <h1 className="mt-5 text-4xl leading-[1.06] font-semibold sm:text-5xl lg:text-[3.4rem]">
+          {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
+
+          <h1 className="mt-5 text-4xl leading-[1.06] font-semibold text-navy-950 sm:text-5xl lg:text-[3.4rem] dark:text-white">
             {title}
           </h1>
+
           {description && (
-            <p className="mt-5 max-w-2xl text-[15px] leading-relaxed text-white/65 sm:text-lg">
+            <p className="mt-5 max-w-2xl text-[15px] leading-relaxed text-navy-600 sm:text-lg dark:text-navy-300">
               {description}
             </p>
           )}
+
           {children && <div className="mt-8">{children}</div>}
         </div>
       </div>

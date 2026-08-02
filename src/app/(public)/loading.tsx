@@ -4,13 +4,13 @@ import { Skeleton } from "@/components/ui/primitives";
 export default function PublicLoading() {
   return (
     <div aria-busy="true" aria-label="Loading page content">
-      <div className="relative bg-navy-950 pt-14 pb-16 sm:pt-20 sm:pb-24">
+      <div className="wash-blue relative border-b border-brand-100/70 pt-14 pb-16 sm:pt-20 sm:pb-24 dark:border-navy-800">
         <div className="container-page">
-          <Skeleton className="h-3.5 w-44 bg-white/10" />
-          <Skeleton className="mt-7 h-11 w-full max-w-2xl bg-white/10" />
-          <Skeleton className="mt-3 h-11 w-2/3 max-w-lg bg-white/10" />
-          <Skeleton className="mt-6 h-4 w-full max-w-xl bg-white/8" />
-          <Skeleton className="mt-2 h-4 w-4/5 max-w-md bg-white/8" />
+          <Skeleton className="h-3.5 w-44" />
+          <Skeleton className="mt-7 h-11 w-full max-w-2xl" />
+          <Skeleton className="mt-3 h-11 w-2/3 max-w-lg" />
+          <Skeleton className="mt-6 h-4 w-full max-w-xl" />
+          <Skeleton className="mt-2 h-4 w-4/5 max-w-md" />
         </div>
       </div>
 

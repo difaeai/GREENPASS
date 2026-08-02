@@ -8,7 +8,10 @@ export function Providers({ children }: { children: ReactNode }) {
   return (
     <ThemeProvider
       attribute="class"
-      defaultTheme="system"
+      // First visit always lands on the light white-and-blue palette, even if
+      // the visitor's OS is set to dark. `enableSystem` stays on so "System"
+      // is still a choice in the toggle — it is just not the default.
+      defaultTheme="light"
       enableSystem
       disableTransitionOnChange
     >

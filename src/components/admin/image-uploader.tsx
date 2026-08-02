@@ -176,7 +176,7 @@ export function ImageUploader({
               <div className="flex flex-wrap items-center justify-center gap-2">
                 <label
                   htmlFor={inputId}
-                  className="cursor-pointer rounded-lg bg-navy-950 px-3 py-1.5 text-[12.5px] font-medium text-white transition-colors hover:bg-navy-800 dark:bg-white dark:text-navy-950"
+                  className="cursor-pointer rounded-lg bg-brand-600 px-3 py-1.5 text-[12.5px] font-medium text-white transition-colors hover:bg-brand-700"
                 >
                   Choose a file
                 </label>

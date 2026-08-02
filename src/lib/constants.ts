@@ -35,12 +35,16 @@ export const STORAGE_FOLDERS = {
   general: "general",
 } as const;
 
+/**
+ * Public navigation. Labels follow the company's own language; the paths stay
+ * generic so the routes, sitemap and admin screens keep working unchanged.
+ */
 export const PUBLIC_NAV = [
   { label: "Home", href: "/" },
-  { label: "About Us", href: "/about" },
-  { label: "Our Services", href: "/services" },
-  { label: "Portfolio", href: "/portfolio" },
-  { label: "Contact Us", href: "/contact" },
+  { label: "Vision", href: "/about" },
+  { label: "Focus Sectors", href: "/services" },
+  { label: "Mandates", href: "/portfolio" },
+  { label: "Request a Briefing", href: "/contact" },
 ] as const;
 
 /** Page size used by every paginated admin table and public grid. */

@@ -73,16 +73,17 @@ export function StatsSection({
   if (items.length === 0) return null;
 
   return (
-    <section className="relative isolate overflow-hidden bg-navy-950 py-20 text-white sm:py-24">
+    <section className="band-blue relative isolate overflow-hidden py-20 sm:py-24">
+      {/* Light-catching highlights keep the flat gradient from looking dead. */}
       <div
         aria-hidden
         className="absolute inset-0 -z-1"
         style={{
           backgroundImage:
-            "radial-gradient(ellipse 60% 55% at 20% 10%, rgba(37,99,235,0.26), transparent 62%), radial-gradient(ellipse 50% 45% at 85% 90%, rgba(14,165,233,0.18), transparent 60%)",
+            "radial-gradient(ellipse 55% 60% at 18% 8%, rgba(255,255,255,0.16), transparent 60%), radial-gradient(ellipse 45% 50% at 88% 92%, rgba(255,255,255,0.10), transparent 60%)",
         }}
       />
-      <div aria-hidden className="grid-backdrop absolute inset-0 -z-1 opacity-20" />
+      <div aria-hidden className="grid-backdrop absolute inset-0 -z-1 opacity-15" />
 
       <div className="container-page" ref={ref}>
         <SectionHeading
@@ -92,9 +93,9 @@ export function StatsSection({
           className="[&_h2]:text-white [&_p]:text-white/60 [&>span]:border-white/20 [&>span]:bg-white/10 [&>span]:text-white/85"
         />
 
-        <dl className="mt-14 grid grid-cols-2 gap-px overflow-hidden rounded-3xl bg-white/8 ring-1 ring-white/10 lg:grid-cols-4">
+        <dl className="mt-14 grid grid-cols-2 gap-px overflow-hidden rounded-3xl bg-white/18 ring-1 ring-white/20 lg:grid-cols-4">
           {items.map((stat) => (
-            <div key={stat.id} className="bg-navy-950/85 backdrop-blur-sm">
+            <div key={stat.id} className="bg-brand-700/35 backdrop-blur-sm">
               <dt className="sr-only">{stat.label}</dt>
               <dd>
                 <StatTile stat={stat} active={inView} />

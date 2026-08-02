@@ -16,7 +16,7 @@ const VARIANTS: Record<ButtonVariant, string> = {
   primary:
     "bg-linear-to-r from-brand-700 to-brand-500 text-white shadow-[0_10px_30px_-10px_rgba(37,99,235,0.7)] hover:from-brand-600 hover:to-brand-400 hover:shadow-[0_14px_38px_-10px_rgba(37,99,235,0.8)] active:scale-[0.985]",
   secondary:
-    "bg-navy-950 text-white hover:bg-navy-800 dark:bg-white dark:text-navy-950 dark:hover:bg-navy-100",
+    "bg-brand-700 text-white hover:bg-brand-800 dark:bg-brand-600 dark:hover:bg-brand-500",
   outline:
     "border border-navy-200 bg-transparent text-navy-900 hover:border-brand-400 hover:bg-brand-50 hover:text-brand-700 dark:border-navy-700 dark:text-navy-100 dark:hover:border-brand-500 dark:hover:bg-navy-900 dark:hover:text-brand-300",
   ghost:

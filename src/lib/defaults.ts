@@ -13,271 +13,296 @@ import type {
  *  2. Backfill fields the admin has not filled in yet (see `withDefaults`).
  *  3. Provide the payload for `npm run seed`.
  *
- * Placeholder imagery points at Unsplash; replace it from the admin panel's
- * Media Library once real assets exist.
+ * Copy here is derived from the company's own supplied material. Nothing is
+ * asserted that was not provided — no client names, revenue figures, project
+ * histories or endorsements have been invented.
  */
 
+/**
+ * PLACEHOLDER IMAGERY — replace every one of these from
+ * Admin → Media Library before launch.
+ *
+ * These are generic Unsplash stock photos chosen to suit the three sectors.
+ * They are not photographs of MS GreenPass sites, assets or people, and the
+ * `ceo` portrait is a stock model, not Faraz Chaudhry.
+ */
 const IMG = {
+  // Real estate / development
+  skyline: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=80",
+  architecture: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1600&q=80",
+  construction: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1600&q=80",
+  land: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=80",
+
+  // Clean energy
+  solar: "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1600&q=80",
+  wind: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=1600&q=80",
+
+  // Mines & minerals / industrial
+  quarry: "https://images.unsplash.com/photo-1579547944212-c4f4961a8dd8?auto=format&fit=crop&w=1600&q=80",
+  machinery: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1600&q=80",
+
+  // Corporate
+  boardroom: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1600&q=80",
   office: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=80",
-  team: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1600&q=80",
-  meeting: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1600&q=80",
-  code: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1600&q=80",
-  city: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1920&q=80",
-  desk: "https://images.unsplash.com/photo-1531973576160-7125cd663d86?auto=format&fit=crop&w=1600&q=80",
+  handshake: "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1600&q=80",
   ceo: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80",
 } as const;
 
 export const DEFAULT_HOME_CONTENT: HomeContent = {
   intro: {
     eyebrow: "Who we are",
-    heading: "Engineering the software that moves ambitious companies forward",
+    heading: "Vision & Mission",
     body:
-      "GreenPass is a product engineering partner for organisations that treat software as a competitive advantage. " +
-      "We embed senior designers, engineers and cloud architects alongside your team to ship platforms that are fast, " +
-      "secure and genuinely pleasant to use — then we stay to help them scale.",
-    image: IMG.office,
+      "MS GreenPass Pvt Ltd is a diversified commercial development company headquartered in Islamabad, " +
+      "concentrating on three core sectors: real estate, mines & minerals, and clean energy.\n\n" +
+      "We identify, vet, and structure opportunities — then carry them through regulatory and government " +
+      "pathways so partners can deploy capital with confidence, in Pakistan and beyond.",
+    image: IMG.boardroom,
     imagePath: null,
     highlights: [
-      "Senior-only delivery squads, no hand-offs to juniors",
-      "Cloud-native architecture built for scale from day one",
-      "Transparent weekly demos and a shared roadmap",
-      "Post-launch support and continuous optimisation",
+      "Every opportunity vetted before it is offered",
+      "Structured from due diligence to government approval",
+      "Direct relationships with public-sector counterparts",
+      "Active across Pakistan and Saudi Arabia",
     ],
     buttonLabel: "More about us",
     buttonLink: "/about",
   },
   whyChooseUs: {
     heading: {
-      eyebrow: "Why choose us",
-      heading: "A partner that behaves like part of your team",
+      eyebrow: "Focus sectors",
+      heading: "Three disciplines. One bench.",
       description:
-        "We combine deep technical craft with the commercial judgement to know which problems are actually worth solving.",
+        "Real estate, mines & minerals, and clean energy — originated, vetted and structured by the same team.",
     },
     items: [
       {
-        id: "wcu-strategy",
-        icon: "Compass",
-        title: "Strategy first",
+        id: "wcu-vetted",
+        icon: "BadgeCheck",
+        title: "Vetted before it's offered",
         description:
-          "Every engagement opens with a discovery sprint so we build the right thing before we build the thing right.",
+          "Every parcel, reserve and project is checked before it reaches a partner. Nothing goes on the table unqualified.",
         order: 1,
       },
       {
-        id: "wcu-team",
-        icon: "Users",
-        title: "Senior engineers only",
+        id: "wcu-access",
+        icon: "KeyRound",
+        title: "Public-sector access",
         description:
-          "The people in your kickoff call are the people writing the code. No bait-and-switch staffing.",
+          "Regulatory facilitation and government pathways are part of the mandate, not an obstacle handed back to you.",
         order: 2,
       },
       {
-        id: "wcu-speed",
-        icon: "Rocket",
-        title: "Shipping velocity",
+        id: "wcu-structure",
+        icon: "Handshake",
+        title: "Structured partnerships",
         description:
-          "Two-week increments with working software at the end of each one, deployed to a real environment.",
+          "Joint ventures shaped for mutual, long-term benefit — commercial, residential and corporate.",
         order: 3,
       },
       {
-        id: "wcu-security",
-        icon: "ShieldCheck",
-        title: "Security by default",
+        id: "wcu-crossborder",
+        icon: "Globe2",
+        title: "Pakistan and Saudi Arabia",
         description:
-          "Threat modelling, least-privilege access and automated dependency scanning are part of the baseline.",
+          "Mandates and partnerships spanning both markets, with the relationships to move between them.",
         order: 4,
       },
       {
-        id: "wcu-scale",
-        icon: "TrendingUp",
-        title: "Built to scale",
+        id: "wcu-bench",
+        icon: "Users",
+        title: "A single bench, no hand-offs",
         description:
-          "Architecture that holds up at ten times today's load, without a rewrite eighteen months from now.",
+          "The people who originate a deal are the people who carry it through negotiation and approval.",
         order: 5,
       },
       {
-        id: "wcu-support",
-        icon: "Headphones",
-        title: "Support that answers",
+        id: "wcu-close",
+        icon: "ShieldCheck",
+        title: "Built for a clean close",
         description:
-          "Named engineers, agreed response times and a status page you can actually trust.",
+          "Every step structured so capital can be deployed with confidence and the transaction completes cleanly.",
         order: 6,
       },
     ],
   },
   stats: {
     heading: {
-      eyebrow: "By the numbers",
-      heading: "Measured in outcomes, not hours billed",
-      description: "A decade of shipping production software for clients across four continents.",
+      eyebrow: "At a glance",
+      heading: "Where we operate",
+      description:
+        "A focused mandate across three sectors and two markets.",
     },
     items: [
-      { id: "stat-projects", label: "Projects Completed", value: 480, suffix: "+", icon: "CheckCircle2", order: 1 },
-      { id: "stat-clients", label: "Happy Clients", value: 210, suffix: "+", icon: "Heart", order: 2 },
-      { id: "stat-countries", label: "Countries Served", value: 26, suffix: "", icon: "Globe2", order: 3 },
-      { id: "stat-years", label: "Years of Experience", value: 12, suffix: "", icon: "CalendarClock", order: 4 },
+      { id: "stat-sectors", label: "Focus Sectors", value: 3, suffix: "", icon: "Layers", order: 1 },
+      { id: "stat-markets", label: "Markets Served", value: 2, suffix: "", icon: "Globe2", order: 2 },
+      { id: "stat-mandates", label: "Active Mandates", value: 9, suffix: "", icon: "ClipboardCheck", order: 3 },
+      { id: "stat-hq", label: "Headquarters", value: 1, suffix: "", icon: "Building2", order: 4 },
     ],
   },
   featuredServices: {
-    eyebrow: "What we do",
-    heading: "Services built around the whole product lifecycle",
+    eyebrow: "Focus sectors",
+    heading: "Three disciplines. One bench.",
     description:
-      "From the first whiteboard sketch to a platform serving millions of requests a day — one accountable partner throughout.",
+      "Real estate, mines & minerals, and clean energy — each with live mandates open to qualified partners.",
   },
   featuredPortfolio: {
-    eyebrow: "Selected work",
-    heading: "Recent projects we're proud of",
-    description: "A sample of the platforms, apps and internal tools we've delivered over the past two years.",
+    eyebrow: "Active mandates",
+    heading: "Open opportunities across all three sectors",
+    description:
+      "Introductions to specific mandates happen after a short qualification conversation.",
   },
   testimonials: {
-    eyebrow: "Client stories",
-    heading: "What our clients say",
-    description: "We measure success by whether teams want to work with us again. Most do.",
+    eyebrow: "Partners",
+    heading: "What our partners say",
+    description: "Add partner statements from the admin panel once you have them on record.",
   },
   cta: {
-    eyebrow: "Let's build something",
-    heading: "Have a project in mind? Let's talk about it.",
+    eyebrow: "Request a briefing",
+    heading: "Tell us your sector of interest.",
     description:
-      "Tell us where you're headed and we'll come back within one business day with a clear view of scope, timeline and cost.",
-    buttonLabel: "Start a conversation",
+      "Introductions to specific mandates happen after a short qualification conversation. We'll route you to the right next step.",
+    buttonLabel: "Request a briefing",
     buttonLink: "/contact",
-    backgroundImage: IMG.city,
+    backgroundImage: IMG.skyline,
   },
 };
 
 export const DEFAULT_ABOUT_CONTENT: AboutContent = {
   intro: {
-    eyebrow: "About GreenPass",
-    heading: "A software company built by engineers who got tired of shipping the wrong thing",
+    eyebrow: "Who we are",
+    heading: "Unlocking Pakistan's land, resources, and energy potential",
     body:
-      "GreenPass started in 2013 with four engineers and one conviction: most software projects fail long before the first " +
-      "line of code, in the gap between what a business needs and what gets specified. So we built a company around closing " +
-      "that gap.\n\nToday we're a team of designers, engineers, cloud architects and delivery leads working with startups " +
-      "scaling past their first million users and with enterprises modernising systems that have been running for decades. " +
-      "The constant across both is the same: small senior teams, short feedback loops, and an obsession with the outcome " +
-      "rather than the invoice.",
-    image: IMG.team,
+      "MS GreenPass Pvt Ltd is a diversified commercial development company headquartered in Islamabad, " +
+      "concentrating on three core sectors: real estate, mines & minerals, and clean energy.\n\n" +
+      "We identify, vet, and structure opportunities — then carry them through regulatory and government " +
+      "pathways so partners can deploy capital with confidence, in Pakistan and beyond.\n\n" +
+      "Our work bridges capital and public-sector access, structuring vetted, investment-ready " +
+      "opportunities for partners in Pakistan and Saudi Arabia.",
+    image: IMG.skyline,
     imagePath: null,
-    secondaryImage: IMG.meeting,
+    secondaryImage: IMG.handshake,
     secondaryImagePath: null,
   },
   vision: {
     heading: "Our Vision",
     body:
-      "To be the engineering partner that ambitious organisations call first — known less for the size of our team than " +
-      "for the durability of what we build and the honesty of how we build it.",
+      "To be the trusted bridge between Pakistan's untapped land, resources, and energy potential and the " +
+      "capital, expertise, and partnerships needed to unlock it.",
     icon: "Eye",
   },
   mission: {
     heading: "Our Mission",
     body:
-      "To turn complex business problems into software that is fast, secure and genuinely enjoyable to use, delivered by " +
-      "senior people who stay accountable from discovery through to long-term support.",
+      "To surface vetted, investment-ready ventures across real estate, mining, and energy — and to " +
+      "structure every step, from due diligence to government approval, for a clean and confident close.",
     icon: "Target",
   },
   coreValues: {
     heading: {
-      eyebrow: "Core values",
-      heading: "The principles we actually hire and fire on",
-      description: "Values only matter if they cost something. These do.",
+      eyebrow: "How we work",
+      heading: "The standards behind every mandate",
+      description:
+        "Drawn from how we originate, vet and structure opportunities.",
     },
     items: [
       {
-        id: "cv-craft",
-        icon: "Gem",
-        title: "Craft over volume",
+        id: "cv-vetting",
+        icon: "BadgeCheck",
+        title: "Vetted first",
         description:
-          "We would rather deliver one system that lasts a decade than ten that need replacing in eighteen months.",
+          "Every parcel we bring to the table is vetted before it's offered. Nothing reaches a partner unqualified.",
         order: 1,
       },
       {
-        id: "cv-candour",
-        icon: "MessageSquare",
-        title: "Uncomfortable candour",
+        id: "cv-mutual",
+        icon: "Handshake",
+        title: "Mutual benefit",
         description:
-          "If a requested feature is a bad idea, you will hear it from us early — with the reasoning and an alternative.",
+          "Partnerships are structured for mutual, long-term benefit — not a single transaction.",
         order: 2,
       },
       {
-        id: "cv-ownership",
+        id: "cv-access",
         icon: "KeyRound",
-        title: "Total ownership",
+        title: "Access, not obstacles",
         description:
-          "You own the code, the infrastructure and the documentation. No lock-in, no hostage architecture.",
+          "We map the resource, open the door, and carry the project through regulatory and government pathways.",
         order: 3,
       },
       {
-        id: "cv-curiosity",
-        icon: "Lightbulb",
-        title: "Relentless curiosity",
+        id: "cv-confidence",
+        icon: "ShieldCheck",
+        title: "Confident capital",
         description:
-          "Every engineer gets dedicated time to go deep on new tooling, and the obligation to teach the rest of us.",
+          "Every step is structured so partners can deploy capital with confidence and close cleanly.",
         order: 4,
       },
     ],
   },
   history: {
     heading: {
-      eyebrow: "Our history",
-      heading: "Twelve years, one direction",
-      description: "The moments that shaped how we work today.",
+      eyebrow: "Our approach",
+      heading: "From origination to close",
+      description: "How a mandate moves through our bench.",
     },
     milestones: [
       {
-        id: "hist-2013",
-        year: "2013",
-        title: "Four engineers, one room",
+        id: "hist-identify",
+        year: "01",
+        title: "Identify",
         description:
-          "GreenPass is founded as a specialist web engineering shop, taking on the projects other agencies had abandoned.",
+          "We surface opportunities across land, mineral reserves and energy — including assets that never reach an open market.",
         order: 1,
       },
       {
-        id: "hist-2016",
-        year: "2016",
-        title: "First enterprise platform",
+        id: "hist-vet",
+        year: "02",
+        title: "Vet",
         description:
-          "We deliver a logistics platform still processing millions of shipments a year, and grow to twenty-five people.",
+          "Due diligence before anything is offered. If a parcel or reserve does not stand up, it does not reach a partner.",
         order: 2,
       },
       {
-        id: "hist-2019",
-        year: "2019",
-        title: "Cloud & data practice",
+        id: "hist-structure",
+        year: "03",
+        title: "Structure",
         description:
-          "Dedicated cloud architecture and data engineering teams launch, alongside our first overseas delivery hub.",
+          "Joint ventures and commercial terms shaped for mutual, long-term benefit across Pakistan and Saudi Arabia.",
         order: 3,
       },
       {
-        id: "hist-2022",
-        year: "2022",
-        title: "Product design studio",
+        id: "hist-approve",
+        year: "04",
+        title: "Facilitate",
         description:
-          "Design joins engineering under one roof so research, interface and implementation stop being separate contracts.",
+          "Regulatory and government pathways carried by us, built on direct relationships with public-sector counterparts.",
         order: 4,
       },
       {
-        id: "hist-2025",
-        year: "2025",
-        title: "AI engineering group",
+        id: "hist-close",
+        year: "05",
+        title: "Close",
         description:
-          "We formalise an applied AI practice, embedding retrieval and agent systems into the products we already run.",
+          "Every step structured so capital is deployed with confidence and the transaction completes cleanly.",
         order: 5,
       },
     ],
   },
   team: {
-    eyebrow: "Our team",
-    heading: "The people you'll actually work with",
-    description: "Senior practitioners who have shipped, scaled and occasionally rescued production systems.",
+    eyebrow: "A single bench · no hand-offs",
+    heading: "Leadership",
+    description:
+      "The people who originate a mandate are the people who carry it through negotiation and approval.",
   },
   ceo: {
-    name: "Daniel Okafor",
-    designation: "Founder & Chief Executive Officer",
+    name: "Faraz Chaudhry",
+    designation: "CEO, MS GreenPass Pvt Ltd",
     message:
-      "When we started GreenPass, the industry standard was to sell a large team and quietly staff it with whoever was on " +
-      "the bench. We built the opposite company.\n\nEvery engagement we take on is one where we would be comfortable putting " +
-      "our own name on the result — because we do. That means turning down work that isn't a fit, telling clients when a " +
-      "requested feature won't earn its keep, and staying long after launch to make sure the thing actually holds.\n\nIf " +
-      "that sounds like the kind of partner you're looking for, I'd genuinely like to hear what you're building.",
+      "Faraz Chaudhry leads MS GreenPass's work across real estate, mines & minerals, and clean energy, " +
+      "structuring joint ventures and carrying projects through approval with partners in Pakistan and " +
+      "Saudi Arabia.\n\nHis role spans commercial negotiation, regulatory facilitation, and deal " +
+      "origination — built on direct relationships with public-sector counterparts.",
     photo: IMG.ceo,
     photoPath: null,
     signatureImage: null,
@@ -286,59 +311,65 @@ export const DEFAULT_ABOUT_CONTENT: AboutContent = {
 };
 
 export const DEFAULT_WEBSITE_SETTINGS: WebsiteSettings = {
-  companyName: "GreenPass",
-  tagline: "Software engineering for ambitious companies",
+  companyName: "MS GreenPass",
+  tagline: "Unlocking Pakistan's land, resources, and energy potential",
   logoLight: "",
   logoDark: "",
   favicon: "",
-  email: "hello@greenpass.example",
-  secondaryEmail: "careers@greenpass.example",
-  phone: "+1 (415) 555-0142",
+  email: "contact@msgreenpass.com",
+  secondaryEmail: "",
+  // No public phone number was supplied. Leaving these blank hides the phone
+  // and WhatsApp affordances everywhere rather than showing empty fields.
+  phone: "",
   secondaryPhone: "",
-  whatsapp: "+14155550142",
-  address: "500 Howard Street, Suite 400\nSan Francisco, CA 94105\nUnited States",
+  whatsapp: "",
+  address: "MS GreenPass Pvt Ltd\nIslamabad\nPakistan",
+  // Generic Islamabad embed — replace with the exact office location.
   googleMapsEmbedUrl:
-    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.0396193355!2d-122.39968368468!3d37.78779497975668!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085807ded297e89%3A0xa4614a4b5e1e1c1!2sHoward%20St%2C%20San%20Francisco%2C%20CA!5e0!3m2!1sen!2sus!4v1700000000000",
-  googleMapsLink: "https://maps.google.com/?q=500+Howard+Street+San+Francisco",
+    "https://www.google.com/maps?q=Islamabad,+Pakistan&output=embed",
+  googleMapsLink: "https://maps.google.com/?q=Islamabad,+Pakistan",
   businessHours: [
-    { id: "bh-1", day: "Monday – Friday", hours: "9:00 AM – 6:00 PM", order: 1 },
-    { id: "bh-2", day: "Saturday", hours: "10:00 AM – 2:00 PM", order: 2 },
+    { id: "bh-1", day: "Monday – Friday", hours: "9:00 AM – 6:00 PM (PKT)", order: 1 },
+    { id: "bh-2", day: "Saturday", hours: "By appointment", order: 2 },
     { id: "bh-3", day: "Sunday", hours: "Closed", order: 3 },
   ],
+  // No social profiles were supplied — add them from Admin → Website settings
+  // and the icons will appear automatically.
   social: {
-    facebook: "https://facebook.com/",
-    twitter: "https://x.com/",
-    linkedin: "https://linkedin.com/",
-    instagram: "https://instagram.com/",
+    facebook: "",
+    twitter: "",
+    linkedin: "",
+    instagram: "",
     youtube: "",
-    github: "https://github.com/",
+    github: "",
   },
   footerText:
-    "GreenPass builds and scales digital products for companies that treat software as a competitive advantage.",
-  copyrightText: "GreenPass. All rights reserved.",
-  contactHeading: "Let's talk about your project",
+    "A diversified commercial development company across real estate, mines & minerals, and clean energy — headquartered in Islamabad, Pakistan.",
+  copyrightText: "MS GreenPass Pvt Ltd. All rights reserved.",
+  contactHeading: "Request a Briefing",
   contactSubheading:
-    "Tell us what you're building. We reply to every enquiry within one business day — usually much sooner.",
+    "Introductions to specific mandates happen after a short qualification conversation. Tell us your sector of interest and we'll route you to the right next step.",
 };
 
 export const DEFAULT_SEO_SETTINGS: SeoSettings = {
-  siteName: "GreenPass",
+  siteName: "MS GreenPass",
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
-  defaultOgImage: IMG.code,
-  twitterHandle: "@greenpass",
+  defaultOgImage: IMG.skyline,
+  twitterHandle: "",
   organizationLogo: "",
   googleSiteVerification: "",
   pages: {
     home: {
-      metaTitle: "GreenPass — Software Engineering for Ambitious Companies",
+      metaTitle: "MS GreenPass — Real Estate, Mines & Minerals, Clean Energy in Pakistan",
       metaDescription:
-        "GreenPass designs, builds and scales web platforms, mobile apps and cloud infrastructure for companies that treat software as a competitive advantage.",
+        "MS GreenPass structures vetted, investment-ready opportunities across real estate, mines & minerals, and clean energy — bridging capital and public-sector access in Pakistan and Saudi Arabia.",
       keywords: [
-        "software development company",
-        "custom software development",
-        "web application development",
-        "mobile app development",
-        "cloud consulting",
+        "investment opportunities Pakistan",
+        "real estate joint venture Pakistan",
+        "mining exploration Pakistan",
+        "clean energy projects Pakistan",
+        "Islamabad commercial development",
+        "Pakistan Saudi Arabia investment",
       ],
       ogImage: null,
       noIndex: false,
@@ -346,32 +377,36 @@ export const DEFAULT_SEO_SETTINGS: SeoSettings = {
     about: {
       metaTitle: "About Us",
       metaDescription:
-        "Meet the engineers, designers and cloud architects behind GreenPass — twelve years of shipping production software for clients across 26 countries.",
-      keywords: ["about greenpass", "software company team", "engineering culture"],
+        "MS GreenPass Pvt Ltd is a diversified commercial development company headquartered in Islamabad, working across real estate, mines & minerals, and clean energy.",
+      keywords: ["about MS GreenPass", "Faraz Chaudhry", "commercial development Islamabad"],
       ogImage: null,
       noIndex: false,
     },
     services: {
-      metaTitle: "Our Services",
+      metaTitle: "Focus Sectors",
       metaDescription:
-        "Custom software development, mobile apps, cloud architecture, UI/UX design, data engineering and long-term product support.",
-      keywords: ["software services", "IT consulting", "product engineering"],
+        "Three disciplines, one bench: vetted land and joint ventures, untapped mineral reserves, and solar, EV and wind opportunities across Pakistan and Saudi Arabia.",
+      keywords: [
+        "real estate consultancy Pakistan",
+        "mines and minerals Pakistan",
+        "solar EV wind Pakistan",
+      ],
       ogImage: null,
       noIndex: false,
     },
     portfolio: {
-      metaTitle: "Portfolio",
+      metaTitle: "Active Mandates",
       metaDescription:
-        "Selected work from GreenPass — platforms, mobile apps and internal tools delivered for startups and enterprises worldwide.",
-      keywords: ["software portfolio", "case studies", "client projects"],
+        "Open opportunities across real estate, mines & minerals, and clean energy. Introductions follow a short qualification conversation.",
+      keywords: ["investment mandates Pakistan", "joint venture opportunities", "exploration access"],
       ogImage: null,
       noIndex: false,
     },
     contact: {
-      metaTitle: "Contact Us",
+      metaTitle: "Request a Briefing",
       metaDescription:
-        "Get in touch with GreenPass. Tell us about your project and we'll respond within one business day.",
-      keywords: ["contact greenpass", "hire software developers", "project enquiry"],
+        "Tell us your sector of interest and we'll route you to the right next step. MS GreenPass, Islamabad, Pakistan.",
+      keywords: ["contact MS GreenPass", "request a briefing", "Islamabad Pakistan"],
       ogImage: null,
       noIndex: false,
     },

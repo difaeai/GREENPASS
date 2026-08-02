@@ -162,7 +162,7 @@ export function FeaturedServicesSection({
           </Reveal>
           <Reveal delay={0.1}>
             <ButtonLink href="/services" variant="outline" className="shrink-0">
-              All services
+              All sectors
               <ArrowRight aria-hidden className="size-4" />
             </ButtonLink>
           </Reveal>
@@ -213,7 +213,7 @@ export function FeaturedPortfolioSection({
           </Reveal>
           <Reveal delay={0.1}>
             <ButtonLink href="/portfolio" variant="outline" className="shrink-0">
-              View all work
+              View all mandates
               <ArrowRight aria-hidden className="size-4" />
             </ButtonLink>
           </Reveal>
@@ -222,8 +222,8 @@ export function FeaturedPortfolioSection({
         {projects.length === 0 ? (
           <EmptyState
             className="mt-12"
-            title="No projects published yet"
-            description="Publish a portfolio project from the admin panel to showcase it here."
+            title="No mandates published yet"
+            description="Publish a mandate from the admin panel to list it here."
           />
         ) : (
           <Stagger as="ul" className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -248,7 +248,7 @@ export function CtaSection({ cta }: { cta: HomeCta }) {
     <Section spacing="lg">
       <div className="container-page">
         <Reveal>
-          <div className="relative isolate overflow-hidden rounded-4xl bg-navy-950 px-6 py-16 text-center sm:px-14 sm:py-20">
+          <div className="band-blue relative isolate overflow-hidden rounded-4xl px-6 py-16 text-center shadow-[0_24px_60px_-24px_rgb(37_99_235_/_0.6)] sm:px-14 sm:py-20">
             {cta.backgroundImage && (
               <div aria-hidden className="absolute inset-0 -z-2">
                 <SmartImage
@@ -256,7 +256,7 @@ export function CtaSection({ cta }: { cta: HomeCta }) {
                   alt=""
                   fill
                   sizes="100vw"
-                  className="object-cover opacity-22"
+                  className="object-cover opacity-15 mix-blend-overlay"
                 />
               </div>
             )}
@@ -266,7 +266,7 @@ export function CtaSection({ cta }: { cta: HomeCta }) {
               className="absolute inset-0 -z-1"
               style={{
                 backgroundImage:
-                  "radial-gradient(ellipse 60% 70% at 50% 0%, rgba(37,99,235,0.35), transparent 65%), radial-gradient(ellipse 45% 50% at 85% 100%, rgba(14,165,233,0.22), transparent 60%)",
+                  "radial-gradient(ellipse 60% 70% at 50% 0%, rgba(255,255,255,0.18), transparent 65%), radial-gradient(ellipse 45% 50% at 85% 100%, rgba(255,255,255,0.10), transparent 60%)",
               }}
             />
 
@@ -288,7 +288,13 @@ export function CtaSection({ cta }: { cta: HomeCta }) {
                 </p>
               )}
 
-              <ButtonLink href={cta.buttonLink} size="lg" className="mt-9">
+              {/* White button on the blue band — the strongest contrast pair
+                  available, so the primary action stays unmistakable. */}
+              <ButtonLink
+                href={cta.buttonLink}
+                size="lg"
+                className="mt-9 bg-white bg-none text-brand-700 shadow-[0_10px_30px_-10px_rgb(0_0_0_/_0.35)] hover:bg-brand-50 hover:text-brand-800"
+              >
                 {cta.buttonLabel}
                 <ArrowRight aria-hidden className="size-4" />
               </ButtonLink>

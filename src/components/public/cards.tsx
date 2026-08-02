@@ -177,7 +177,7 @@ export function ProjectCard({
       </div>
 
       <Link href={`/portfolio/${project.slug}`} className="absolute inset-0">
-        <span className="sr-only">View the {project.title} case study</span>
+        <span className="sr-only">View the {project.title} mandate</span>
       </Link>
     </article>
   );

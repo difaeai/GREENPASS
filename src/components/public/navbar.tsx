@@ -75,7 +75,7 @@ export function Navbar({ settings }: { settings: WebsiteSettings }) {
       {/* Utility strip — desktop only, hidden once scrolled. */}
       <div
         className={cn(
-          "hidden overflow-hidden border-b border-white/10 bg-navy-950 text-white transition-all duration-300 lg:block",
+          "band-blue hidden overflow-hidden border-b border-white/10 transition-all duration-300 lg:block",
           scrolled ? "max-h-0 opacity-0" : "max-h-12 opacity-100",
         )}
       >
@@ -88,13 +88,15 @@ export function Navbar({ settings }: { settings: WebsiteSettings }) {
               <Mail aria-hidden className="size-3.5" />
               {settings.email}
             </a>
-            <a
-              href={`tel:${toDialString(settings.phone)}`}
-              className="flex items-center gap-2 transition-colors hover:text-white"
-            >
-              <Phone aria-hidden className="size-3.5" />
-              {settings.phone}
-            </a>
+            {settings.phone && (
+              <a
+                href={`tel:${toDialString(settings.phone)}`}
+                className="flex items-center gap-2 transition-colors hover:text-white"
+              >
+                <Phone aria-hidden className="size-3.5" />
+                {settings.phone}
+              </a>
+            )}
           </div>
           <p className="text-white/55">{settings.tagline}</p>
         </div>
@@ -240,13 +242,15 @@ export function Navbar({ settings }: { settings: WebsiteSettings }) {
                     <Mail aria-hidden className="size-4" />
                     {settings.email}
                   </a>
-                  <a
-                    href={`tel:${toDialString(settings.phone)}`}
-                    className="flex items-center gap-2.5 transition-colors hover:text-brand-600"
-                  >
-                    <Phone aria-hidden className="size-4" />
-                    {settings.phone}
-                  </a>
+                  {settings.phone && (
+                    <a
+                      href={`tel:${toDialString(settings.phone)}`}
+                      className="flex items-center gap-2.5 transition-colors hover:text-brand-600"
+                    >
+                      <Phone aria-hidden className="size-4" />
+                      {settings.phone}
+                    </a>
+                  )}
                 </div>
               </div>
             </motion.div>
