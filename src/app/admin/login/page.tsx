@@ -68,7 +68,7 @@ function LoginForm() {
         className="absolute inset-0 -z-1"
         style={{
           backgroundImage:
-            "radial-gradient(ellipse 55% 50% at 20% 10%, rgba(37,99,235,0.12), transparent 60%), radial-gradient(ellipse 45% 45% at 85% 88%, rgba(14,165,233,0.09), transparent 60%)",
+            "radial-gradient(ellipse 55% 50% at 20% 10%, rgba(34,197,94,0.12), transparent 60%), radial-gradient(ellipse 45% 45% at 85% 88%, rgba(74,222,128,0.09), transparent 60%)",
         }}
       />
       <div aria-hidden className="grid-backdrop absolute inset-0 -z-1 opacity-35" />
@@ -85,7 +85,7 @@ function LoginForm() {
         <div className="rounded-3xl border border-brand-100 bg-white p-7 shadow-lift sm:p-9 dark:border-navy-800 dark:bg-navy-900">
           <span
             aria-hidden
-            className="flex size-12 items-center justify-center rounded-2xl bg-linear-135 from-brand-600 to-accent-500 text-white shadow-[0_10px_28px_-10px_rgba(37,99,235,0.8)]"
+            className="flex size-12 items-center justify-center rounded-2xl bg-linear-135 from-brand-600 to-accent-500 text-white shadow-[0_10px_28px_-10px_rgba(34,197,94,0.8)]"
           >
             <ShieldCheck className="size-6" />
           </span>

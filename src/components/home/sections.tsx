@@ -117,7 +117,7 @@ export function WhyChooseUsSection({
               <article className="group surface-card h-full p-7 transition-all duration-300 hover:-translate-y-1 hover:border-brand-300 hover:shadow-lift dark:hover:border-brand-500/40">
                 <span
                   aria-hidden
-                  className="flex size-12 items-center justify-center rounded-2xl bg-linear-135 from-brand-600 to-accent-500 text-white shadow-[0_8px_22px_-8px_rgba(37,99,235,0.7)] transition-transform duration-300 group-hover:scale-105"
+                  className="flex size-12 items-center justify-center rounded-2xl bg-linear-135 from-brand-600 to-accent-500 text-white shadow-[0_8px_22px_-8px_rgba(34,197,94,0.7)] transition-transform duration-300 group-hover:scale-105"
                 >
                   <Icon name={item.icon} className="size-5.5" />
                 </span>

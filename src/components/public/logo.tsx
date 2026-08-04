@@ -51,7 +51,7 @@ export function Logo({ settings, className, variant = "auto", showTagline = fals
       ) : (
         <span
           aria-hidden
-          className="flex size-9 items-center justify-center rounded-xl bg-linear-135 from-brand-600 to-accent-500 text-sm font-bold text-white shadow-[0_6px_18px_-6px_rgba(37,99,235,0.75)] transition-transform duration-300 group-hover:scale-105"
+          className="flex size-9 items-center justify-center rounded-xl bg-linear-135 from-brand-600 to-accent-500 text-sm font-bold text-white shadow-[0_6px_18px_-6px_rgba(34,197,94,0.75)] transition-transform duration-300 group-hover:scale-105"
         >
           {settings.companyName.slice(0, 1).toUpperCase()}
         </span>

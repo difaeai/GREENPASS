@@ -40,7 +40,7 @@ export async function generateMetadata(): Promise<Metadata> {
     formatDetection: { telephone: true, email: true, address: true },
     icons: settings.favicon
       ? { icon: settings.favicon, apple: settings.favicon }
-      : { icon: "/favicon.ico" },
+      : { icon: "/favicon.svg" },
     ...(seo.googleSiteVerification
       ? { verification: { google: seo.googleSiteVerification } }
       : {}),

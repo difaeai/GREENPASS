@@ -77,7 +77,7 @@ export function VisionMission({
             <article className="surface-card group h-full p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-lift sm:p-10">
               <span
                 aria-hidden
-                className={`flex size-13 items-center justify-center rounded-2xl bg-linear-135 ${panel.tone} text-white shadow-[0_10px_26px_-10px_rgba(37,99,235,0.7)] transition-transform duration-300 group-hover:scale-105`}
+                className={`flex size-13 items-center justify-center rounded-2xl bg-linear-135 ${panel.tone} text-white shadow-[0_10px_26px_-10px_rgba(34,197,94,0.7)] transition-transform duration-300 group-hover:scale-105`}
               >
                 <Icon name={panel.icon} className="size-6" />
               </span>

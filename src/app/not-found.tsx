@@ -18,7 +18,7 @@ export default function NotFound() {
         className="absolute inset-0 -z-1"
         style={{
           backgroundImage:
-            "radial-gradient(ellipse 60% 55% at 50% 0%, rgba(37,99,235,0.14), transparent 62%), radial-gradient(ellipse 45% 45% at 82% 90%, rgba(14,165,233,0.10), transparent 60%)",
+            "radial-gradient(ellipse 60% 55% at 50% 0%, rgba(34,197,94,0.14), transparent 62%), radial-gradient(ellipse 45% 45% at 82% 90%, rgba(74,222,128,0.10), transparent 60%)",
         }}
       />
       <div aria-hidden className="grid-backdrop absolute inset-0 -z-1 opacity-35" />
@@ -27,7 +27,7 @@ export default function NotFound() {
         aria-hidden
         className="font-display text-[7rem] leading-none font-bold tracking-tighter text-transparent sm:text-[11rem]"
         style={{
-          backgroundImage: "linear-gradient(160deg, #2563eb 0%, #1d4ed8 45%, #0284c7 100%)",
+          backgroundImage: "linear-gradient(160deg, #16a34a 0%, #15803d 45%, #22c55e 100%)",
           backgroundClip: "text",
           WebkitBackgroundClip: "text",
         }}
