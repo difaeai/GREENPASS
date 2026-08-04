@@ -6,6 +6,11 @@
 #
 # App Hosting injects Application Default Credentials automatically, so the
 # Admin SDK needs no service-account secret in production.
+#
+# IMPORTANT: every entry under `env` must carry a non-empty `value:` or a
+# `secret:`. An empty string (`value: ""`) fails the build with
+# "either 'value' or 'secret' field is required" — so unset variables are
+# commented out below rather than left blank.
 
 runConfig:
   minInstances: 0
@@ -17,29 +22,33 @@ runConfig:
 env:
   # ---- Public Firebase config -------------------------------------------
   # These are public identifiers, not secrets — safe as plain values.
-  - variable: NEXT_PUBLIC_FIREBASE_API_KEY
-    value: ""
-    availability: [BUILD, RUNTIME]
-
-  - variable: NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN
-    value: ""
-    availability: [BUILD, RUNTIME]
-
-  - variable: NEXT_PUBLIC_FIREBASE_PROJECT_ID
-    value: ""
-    availability: [BUILD, RUNTIME]
-
-  - variable: NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET
-    value: ""
-    availability: [BUILD, RUNTIME]
-
-  - variable: NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID
-    value: ""
-    availability: [BUILD, RUNTIME]
-
-  - variable: NEXT_PUBLIC_FIREBASE_APP_ID
-    value: ""
-    availability: [BUILD, RUNTIME]
+  # Firebase console → Project settings → General → Your apps → Web app.
+  # Uncomment each line and paste the real value; the browser SDK (admin
+  # login, dashboard writes) stays disabled until all six are present.
+  #
+  # - variable: NEXT_PUBLIC_FIREBASE_API_KEY
+  #   value: "AIza..."
+  #   availability: [BUILD, RUNTIME]
+  #
+  # - variable: NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN
+  #   value: "your-project.firebaseapp.com"
+  #   availability: [BUILD, RUNTIME]
+  #
+  # - variable: NEXT_PUBLIC_FIREBASE_PROJECT_ID
+  #   value: "your-project"
+  #   availability: [BUILD, RUNTIME]
+  #
+  # - variable: NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET
+  #   value: "your-project.firebasestorage.app"
+  #   availability: [BUILD, RUNTIME]
+  #
+  # - variable: NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID
+  #   value: "000000000000"
+  #   availability: [BUILD, RUNTIME]
+  #
+  # - variable: NEXT_PUBLIC_FIREBASE_APP_ID
+  #   value: "1:000000000000:web:abc123"
+  #   availability: [BUILD, RUNTIME]
 
   # ---- Site ---------------------------------------------------------------
   - variable: NEXT_PUBLIC_SITE_URL
@@ -51,12 +60,16 @@ env:
     availability: [BUILD, RUNTIME]
 
   # ---- reCAPTCHA ----------------------------------------------------------
-  - variable: NEXT_PUBLIC_RECAPTCHA_SITE_KEY
-    value: ""
-    availability: [BUILD, RUNTIME]
+  # Create a v3 site at https://www.google.com/recaptcha/admin, then uncomment.
+  # - variable: NEXT_PUBLIC_RECAPTCHA_SITE_KEY
+  #   value: "6Lc..."
+  #   availability: [BUILD, RUNTIME]
 
-  # Secrets live in Secret Manager. Create with:
+  # Secrets live in Secret Manager. Create it first — a `secret:` reference to
+  # a secret that does not exist fails the rollout:
   #   firebase apphosting:secrets:set RECAPTCHA_SECRET_KEY
-  - variable: RECAPTCHA_SECRET_KEY
-    secret: RECAPTCHA_SECRET_KEY
-    availability: [RUNTIME]
+  # Then uncomment. Until then the contact form skips verification and logs a
+  # warning (see src/app/api — RECAPTCHA_SECRET_KEY unset ⇒ verification off).
+  # - variable: RECAPTCHA_SECRET_KEY
+  #   secret: RECAPTCHA_SECRET_KEY
+  #   availability: [RUNTIME]
