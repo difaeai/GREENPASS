@@ -82,23 +82,23 @@ export function Navbar({ settings }: { settings: WebsiteSettings }) {
         <div className="container-page flex h-10 items-center justify-between text-[12.5px]">
           <div className="flex items-center gap-6 text-white/70">
             <a
-              href={`mailto:${settings.email}`}
+              href={`mailto:${settings?.email || "contact@msgreenpass.com"}`}
               className="flex items-center gap-2 transition-colors hover:text-white"
             >
               <Mail aria-hidden className="size-3.5" />
-              {settings.email}
+              {settings?.email || "contact@msgreenpass.com"}
             </a>
-            {settings.phone && (
+            {(settings?.phone || settings?.whatsapp) && (
               <a
-                href={`tel:${toDialString(settings.phone)}`}
+                href={settings?.phone ? `tel:${toDialString(settings.phone)}` : (settings?.whatsapp ? `https://wa.me/${settings.whatsapp.replace(/\D/g, "")}` : "#")}
                 className="flex items-center gap-2 transition-colors hover:text-white"
               >
                 <Phone aria-hidden className="size-3.5" />
-                {settings.phone}
+                {settings?.phone || settings?.whatsapp || "+92 300 4109593"}
               </a>
             )}
           </div>
-          <p className="text-white/55">{settings.tagline}</p>
+          <p className="text-white/55">{settings?.tagline || "Unlocking Pakistan's land, resources, and energy potential"}</p>
         </div>
       </div>
 
