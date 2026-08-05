@@ -74,28 +74,37 @@ export function Navbar({ settings }: { settings: WebsiteSettings }) {
 
       {/* Utility strip — always visible with green banner. */}
       <div
-        className="band-blue overflow-hidden border-b border-white/10"
+        style={{
+          background: "linear-gradient(118deg, #16a34a 0%, #22c55e 42%, #4ade80 100%)",
+          color: "#ffffff",
+          padding: "8px 0",
+          borderBottom: "1px solid rgba(255,255,255,0.1)",
+        }}
       >
-        <div className="container-page flex h-10 items-center justify-between text-[12.5px]">
-          <div className="flex items-center gap-6 text-white/70">
+        <div style={{ maxWidth: "80rem", margin: "0 auto", paddingInline: "1.25rem", display: "flex", height: "40px", alignItems: "center", justifyContent: "space-between", fontSize: "12.5px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "24px", color: "rgba(255,255,255,0.7)" }}>
             <a
               href={`mailto:${settings?.email || "contact@msgreenpass.com"}`}
-              className="flex items-center gap-2 transition-colors hover:text-white"
+              style={{ display: "flex", alignItems: "center", gap: "8px", transition: "colors 0.2s", color: "inherit", textDecoration: "none" }}
+              onMouseEnter={(e) => e.currentTarget.style.color = "#ffffff"}
+              onMouseLeave={(e) => e.currentTarget.style.color = "rgba(255,255,255,0.7)"}
             >
-              <Mail aria-hidden className="size-3.5" />
+              <Mail aria-hidden style={{ width: "14px", height: "14px" }} />
               {settings?.email || "contact@msgreenpass.com"}
             </a>
             {(settings?.phone || settings?.whatsapp) && (
               <a
                 href={settings?.phone ? `tel:${toDialString(settings.phone)}` : (settings?.whatsapp ? `https://wa.me/${settings.whatsapp.replace(/\D/g, "")}` : "#")}
-                className="flex items-center gap-2 transition-colors hover:text-white"
+                style={{ display: "flex", alignItems: "center", gap: "8px", transition: "colors 0.2s", color: "inherit", textDecoration: "none" }}
+                onMouseEnter={(e) => e.currentTarget.style.color = "#ffffff"}
+                onMouseLeave={(e) => e.currentTarget.style.color = "rgba(255,255,255,0.7)"}
               >
-                <Phone aria-hidden className="size-3.5" />
+                <Phone aria-hidden style={{ width: "14px", height: "14px" }} />
                 {settings?.phone || settings?.whatsapp || "+92 300 4109593"}
               </a>
             )}
           </div>
-          <p className="text-white/55">{settings?.tagline || "Unlocking Pakistan's land, resources, and energy potential"}</p>
+          <p style={{ color: "rgba(255,255,255,0.55)", margin: 0 }}>{settings?.tagline || "Unlocking Pakistan's land, resources, and energy potential"}</p>
         </div>
       </div>
 
