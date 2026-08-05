@@ -16,7 +16,7 @@ import { PLACEHOLDER_IMAGES as IMG } from "@/lib/defaults";
  *  - as a read-only fallback when the Admin SDK has no credentials, so
  *    `npm run dev` shows a complete site before Firebase is wired up.
  *
- * Everything here is derived from MS GreenPass's own supplied material. Where
+ * Everything here is derived from GreenPass's own supplied material. Where
  * the template expects a field the company has not published — completion
  * dates, client names, testimonials — the field is left empty rather than
  * filled with an invention.
@@ -37,7 +37,7 @@ export const SAMPLE_BANNERS: HomeBanner[] = [
     smallHeading: "Islamabad, Pakistan",
     mainHeading: "Unlocking Pakistan's land, resources, and energy potential",
     description:
-      "MS GreenPass structures vetted, investment-ready opportunities across real estate, mines & minerals, and clean energy — bridging capital and public-sector access in Pakistan and Saudi Arabia.",
+      "GreenPass structures vetted, investment-ready opportunities across real estate, mines & minerals, and clean energy — bridging capital and public-sector access in Pakistan and Saudi Arabia.",
     backgroundImage: IMG.skyline,
     backgroundImagePath: null,
     buttonLabel: "Explore focus areas",
@@ -396,7 +396,7 @@ export const SAMPLE_PROJECTS: PortfolioProject[] = [
     seo: {
       metaTitle: "Exploration Access for Mining Companies",
       metaDescription:
-        "Exploration access in Pakistan arranged for established mining companies, with regulatory pathways carried by MS GreenPass.",
+        "Exploration access in Pakistan arranged for established mining companies, with regulatory pathways carried by GreenPass.",
       keywords: ["exploration access Pakistan", "mining licence", "mining companies Pakistan"],
       ogImage: null,
       noIndex: false,
@@ -531,9 +531,9 @@ export const SAMPLE_TEAM: TeamMember[] = [
     id: "team-faraz-chaudhry",
     order: 1,
     name: "Faraz Chaudhry",
-    position: "CEO, MS GreenPass Pvt Ltd",
+    position: "CEO, GreenPass Pvt Ltd",
     description:
-      "Leads MS GreenPass across real estate, mines & minerals, and clean energy — structuring joint ventures and carrying projects through approval with partners in Pakistan and Saudi Arabia. Commercial negotiation, regulatory facilitation and deal origination, built on direct relationships with public-sector counterparts.",
+      "Leads GreenPass across real estate, mines & minerals, and clean energy — structuring joint ventures and carrying projects through approval with partners in Pakistan and Saudi Arabia. Commercial negotiation, regulatory facilitation and deal origination, built on direct relationships with public-sector counterparts.",
     photo: IMG.ceo,
     photoPath: null,
     linkedinUrl: null,

@@ -23,7 +23,7 @@ import type {
  * Admin → Media Library before launch.
  *
  * These are generic Unsplash stock photos chosen to suit the three sectors.
- * They are not photographs of MS GreenPass sites, assets or people, and the
+ * They are not photographs of GreenPass sites, assets or people, and the
  * `ceo` portrait is a stock model, not Faraz Chaudhry.
  */
 const IMG = {
@@ -53,7 +53,7 @@ export const DEFAULT_HOME_CONTENT: HomeContent = {
     eyebrow: "Who we are",
     heading: "Vision & Mission",
     body:
-      "MS GreenPass Pvt Ltd is a diversified commercial development company headquartered in Islamabad, " +
+      "GreenPass Pvt Ltd is a diversified commercial development company headquartered in Islamabad, " +
       "concentrating on three core sectors: real estate, mines & minerals, and clean energy.\n\n" +
       "We identify, vet, and structure opportunities — then carry them through regulatory and government " +
       "pathways so partners can deploy capital with confidence, in Pakistan and beyond.",
@@ -173,7 +173,7 @@ export const DEFAULT_ABOUT_CONTENT: AboutContent = {
     eyebrow: "Who we are",
     heading: "Unlocking Pakistan's land, resources, and energy potential",
     body:
-      "MS GreenPass Pvt Ltd is a diversified commercial development company headquartered in Islamabad, " +
+      "GreenPass Pvt Ltd is a diversified commercial development company headquartered in Islamabad, " +
       "concentrating on three core sectors: real estate, mines & minerals, and clean energy.\n\n" +
       "We identify, vet, and structure opportunities — then carry them through regulatory and government " +
       "pathways so partners can deploy capital with confidence, in Pakistan and beyond.\n\n" +
@@ -297,9 +297,9 @@ export const DEFAULT_ABOUT_CONTENT: AboutContent = {
   },
   ceo: {
     name: "Faraz Chaudhry",
-    designation: "CEO, MS GreenPass Pvt Ltd",
+    designation: "CEO, GreenPass Pvt Ltd",
     message:
-      "Faraz Chaudhry leads MS GreenPass's work across real estate, mines & minerals, and clean energy, " +
+      "Faraz Chaudhry leads GreenPass's work across real estate, mines & minerals, and clean energy, " +
       "structuring joint ventures and carrying projects through approval with partners in Pakistan and " +
       "Saudi Arabia.\n\nHis role spans commercial negotiation, regulatory facilitation, and deal " +
       "origination — built on direct relationships with public-sector counterparts.",
@@ -311,7 +311,7 @@ export const DEFAULT_ABOUT_CONTENT: AboutContent = {
 };
 
 export const DEFAULT_WEBSITE_SETTINGS: WebsiteSettings = {
-  companyName: "MS GreenPass",
+  companyName: "GreenPass",
   tagline: "Unlocking Pakistan's land, resources, and energy potential",
   logoLight: "",
   logoDark: "",
@@ -326,7 +326,7 @@ export const DEFAULT_WEBSITE_SETTINGS: WebsiteSettings = {
   // International format. `whatsappLink()` strips the spaces and the plus,
   // giving wa.me/923004109593.
   whatsapp: "+92 300 4109593",
-  address: "MS GreenPass Pvt Ltd\nIslamabad\nPakistan",
+  address: "GreenPass Pvt Ltd\nIslamabad\nPakistan",
   // Generic Islamabad embed — replace with the exact office location.
   googleMapsEmbedUrl:
     "https://www.google.com/maps?q=Islamabad,+Pakistan&output=embed",
@@ -348,14 +348,14 @@ export const DEFAULT_WEBSITE_SETTINGS: WebsiteSettings = {
   },
   footerText:
     "A diversified commercial development company across real estate, mines & minerals, and clean energy — headquartered in Islamabad, Pakistan.",
-  copyrightText: "MS GreenPass Pvt Ltd. All rights reserved.",
+  copyrightText: "GreenPass Pvt Ltd. All rights reserved.",
   contactHeading: "Request a Briefing",
   contactSubheading:
     "Introductions to specific mandates happen after a short qualification conversation. Tell us your sector of interest and we'll route you to the right next step.",
 };
 
 export const DEFAULT_SEO_SETTINGS: SeoSettings = {
-  siteName: "MS GreenPass",
+  siteName: "GreenPass",
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   defaultOgImage: IMG.skyline,
   twitterHandle: "",
@@ -363,9 +363,9 @@ export const DEFAULT_SEO_SETTINGS: SeoSettings = {
   googleSiteVerification: "",
   pages: {
     home: {
-      metaTitle: "MS GreenPass — Real Estate, Mines & Minerals, Clean Energy in Pakistan",
+      metaTitle: "GreenPass — Real Estate, Mines & Minerals, Clean Energy in Pakistan",
       metaDescription:
-        "MS GreenPass structures vetted, investment-ready opportunities across real estate, mines & minerals, and clean energy — bridging capital and public-sector access in Pakistan and Saudi Arabia.",
+        "GreenPass structures vetted, investment-ready opportunities across real estate, mines & minerals, and clean energy — bridging capital and public-sector access in Pakistan and Saudi Arabia.",
       keywords: [
         "investment opportunities Pakistan",
         "real estate joint venture Pakistan",
@@ -380,8 +380,8 @@ export const DEFAULT_SEO_SETTINGS: SeoSettings = {
     about: {
       metaTitle: "About Us",
       metaDescription:
-        "MS GreenPass Pvt Ltd is a diversified commercial development company headquartered in Islamabad, working across real estate, mines & minerals, and clean energy.",
-      keywords: ["about MS GreenPass", "Faraz Chaudhry", "commercial development Islamabad"],
+        "GreenPass Pvt Ltd is a diversified commercial development company headquartered in Islamabad, working across real estate, mines & minerals, and clean energy.",
+      keywords: ["about GreenPass", "Faraz Chaudhry", "commercial development Islamabad"],
       ogImage: null,
       noIndex: false,
     },
@@ -408,8 +408,8 @@ export const DEFAULT_SEO_SETTINGS: SeoSettings = {
     contact: {
       metaTitle: "Request a Briefing",
       metaDescription:
-        "Tell us your sector of interest and we'll route you to the right next step. MS GreenPass, Islamabad, Pakistan.",
-      keywords: ["contact MS GreenPass", "request a briefing", "Islamabad Pakistan"],
+        "Tell us your sector of interest and we'll route you to the right next step. GreenPass, Islamabad, Pakistan.",
+      keywords: ["contact GreenPass", "request a briefing", "Islamabad Pakistan"],
       ogImage: null,
       noIndex: false,
     },

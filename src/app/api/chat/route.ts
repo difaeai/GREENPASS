@@ -132,7 +132,7 @@ export async function POST(request: Request) {
           if (final.stop_reason === "refusal") {
             controller.enqueue(
               encoder.encode(
-                "I can't help with that one. For anything else about MS GreenPass, ask away.",
+                "I can't help with that one. For anything else about GreenPass, ask away.",
               ),
             );
           }
