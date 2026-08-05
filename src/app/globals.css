@@ -173,11 +173,11 @@
    are the only saturated areas on an otherwise white page, so they carry the
    brand without the site ever going dark green. */
 @utility band-blue {
-  background-image: linear-gradient(
+  background: linear-gradient(
     118deg,
-    var(--color-brand-600) 0%,
-    var(--color-brand-500) 42%,
-    var(--color-brand-400) 100%
+    #16a34a 0%,
+    #22c55e 42%,
+    #4ade80 100%
   );
   color: #ffffff;
 }
