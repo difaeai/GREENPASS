@@ -72,12 +72,9 @@ export function Navbar({ settings }: { settings: WebsiteSettings }) {
         Skip to content
       </a>
 
-      {/* Utility strip — desktop only, hidden once scrolled. */}
+      {/* Utility strip — always visible with green banner. */}
       <div
-        className={cn(
-          "band-blue hidden overflow-hidden border-b border-white/10 transition-all duration-300 lg:block",
-          scrolled ? "max-h-0 opacity-0" : "max-h-12 opacity-100",
-        )}
+        className="band-blue overflow-hidden border-b border-white/10"
       >
         <div className="container-page flex h-10 items-center justify-between text-[12.5px]">
           <div className="flex items-center gap-6 text-white/70">
