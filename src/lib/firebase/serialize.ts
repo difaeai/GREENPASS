@@ -52,38 +52,48 @@ export function docsToPlain<T>(docs: QueryDocumentSnapshot<DocumentData>[]): T[]
     .filter((value): value is T => value !== null);
 }
 
+function isPlainObject(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
 /**
  * Deep-merge a partial Firestore document over a complete default, so a
  * half-filled document never renders a page with `undefined` holes.
+ *
+ * Defaults only fill in what the document does not say. Anything the admin
+ * *did* save wins, including a cleared field — a blank string and an emptied
+ * list are deliberate edits, and resurrecting the seeded value there is what
+ * makes the panel look like it never saved.
  */
 export function withDefaults<T>(defaults: T, incoming: unknown): T {
-  if (incoming === null || incoming === undefined) return defaults;
+  // The document does not carry this key at all — e.g. a field added to the
+  // schema after the document was written.
+  if (incoming === undefined) return defaults;
 
-  if (Array.isArray(defaults)) {
-    return (Array.isArray(incoming) && incoming.length > 0 ? incoming : defaults) as T;
+  if (incoming === null) {
+    // The admin cleared an optional field ("no button label", "no CEO
+    // signature"), so null is the answer. A null where a section object or a
+    // list belongs is a malformed document instead, and there the default is
+    // the safer read: no admin screen nulls those out — emptying a list saves
+    // `[]` — and a null would crash the component that maps over it.
+    const structural = typeof defaults === "object" && defaults !== null;
+    return structural ? defaults : (null as T);
   }
 
-  if (
-    typeof defaults === "object" &&
-    defaults !== null &&
-    typeof incoming === "object" &&
-    !Array.isArray(incoming)
-  ) {
-    const merged: Record<string, unknown> = { ...(defaults as Record<string, unknown>) };
-    const source = incoming as Record<string, unknown>;
+  if (Array.isArray(defaults)) {
+    // Including the empty array: the admin deleted every item in the list.
+    return (Array.isArray(incoming) ? incoming : defaults) as T;
+  }
 
-    for (const [key, value] of Object.entries(source)) {
+  if (isPlainObject(defaults) && isPlainObject(incoming)) {
+    const merged: Record<string, unknown> = { ...defaults };
+
+    for (const [key, value] of Object.entries(incoming)) {
       if (value === undefined) continue;
-      merged[key] =
-        key in merged
-          ? withDefaults((defaults as Record<string, unknown>)[key], value)
-          : value;
+      merged[key] = key in merged ? withDefaults(defaults[key], value) : value;
     }
     return merged as T;
   }
-
-  // Empty strings fall back to the default so blank admin fields stay readable.
-  if (typeof incoming === "string" && incoming.trim() === "") return defaults;
 
   return incoming as T;
 }
