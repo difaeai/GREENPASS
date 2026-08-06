@@ -363,8 +363,8 @@ export default function HomeContentPage() {
 
         <Panel className="bg-navy-50/60 dark:bg-navy-900/40">
           <p className="text-[13px] leading-relaxed text-navy-600 dark:text-navy-300">
-            The public homepage revalidates every 5 minutes, so saved changes appear shortly after
-            you save rather than instantly.
+            Saving refreshes the public homepage straight away. If a page still looks old, it is
+            your browser&rsquo;s own cache — reload it.
           </p>
         </Panel>
       </div>

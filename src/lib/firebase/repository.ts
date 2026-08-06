@@ -20,6 +20,7 @@ import {
 } from "firebase/firestore";
 
 import { getDb } from "@/lib/firebase/client";
+import { revalidatePublicSite } from "@/lib/revalidate";
 import type { BaseDoc } from "@/types";
 
 /**
@@ -28,6 +29,11 @@ import type { BaseDoc } from "@/types";
  * Writes go straight from the admin's authenticated session to Firestore;
  * `firestore.rules` is what actually authorises them, so a compromised client
  * cannot escalate. `createdAt` / `updatedAt` are stamped here on every write.
+ *
+ * Every write also purges the public site's page cache before it resolves.
+ * Firestore is only half the job — the public pages are statically rendered,
+ * so a save that skipped the purge would not be visible for another five
+ * minutes and would look like it had failed.
  */
 
 /** Recursively turn `Timestamp`s into ISO strings and drop `undefined`. */
@@ -120,6 +126,7 @@ export async function createDoc(
     createdAt: serverTimestamp(),
     updatedAt: serverTimestamp(),
   });
+  await revalidatePublicSite();
   return ref.id;
 }
 
@@ -132,10 +139,12 @@ export async function updateDocById(
     ...stripUndefined(data),
     updatedAt: serverTimestamp(),
   });
+  await revalidatePublicSite();
 }
 
 export async function deleteDocById(collectionName: string, id: string): Promise<void> {
   await deleteDoc(doc(getDb(), collectionName, id));
+  await revalidatePublicSite();
 }
 
 /**
@@ -157,6 +166,7 @@ export async function persistOrder(
   });
 
   await batch.commit();
+  await revalidatePublicSite();
 }
 
 /* ------------------------------------------------------------------ */
@@ -181,6 +191,7 @@ export async function saveSingleton(
     { ...stripUndefined(data), updatedAt: serverTimestamp() },
     { merge: true },
   );
+  await revalidatePublicSite();
 }
 
 /** Next `order` value for a new item — always appended to the end. */

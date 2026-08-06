@@ -286,8 +286,8 @@ export default function WebsiteSettingsPage() {
 
         <Panel className="bg-navy-50/60 dark:bg-navy-900/40">
           <p className="text-[13px] leading-relaxed text-navy-600 dark:text-navy-300">
-            These settings are read by every page, which revalidates on a 5-minute interval.
-            Changes go live shortly after saving.
+            These settings are read by every page. Saving refreshes the whole public site straight
+            away.
           </p>
         </Panel>
       </div>
