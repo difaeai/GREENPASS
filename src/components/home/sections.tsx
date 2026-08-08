@@ -25,13 +25,18 @@ export function IntroSection({ intro }: { intro: HomeIntro }) {
     <Section spacing="lg">
       <div className="container-page grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
         <Reveal direction="right" className="relative">
-          <div className="relative aspect-4/3 overflow-hidden rounded-4xl bg-navy-100 shadow-lift dark:bg-navy-900">
+          {/*
+            Portrait box with `object-contain`: admins upload photos at whatever
+            ratio they have, and cropping a person's head off is worse than a
+            little empty space on the sides.
+          */}
+          <div className="relative aspect-4/5 overflow-hidden rounded-4xl bg-navy-100 shadow-lift dark:bg-navy-900">
             <SmartImage
               src={intro.image}
               alt={intro.heading}
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover"
+              className="object-contain"
               fallbackLabel="Company photo"
             />
           </div>
